@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script>
+var str=("cao nv dai ye de");
+str=str.replace(/\b[a-z]/ig,function(kw){
+	console.log("自动调用了一次");
+	console.log(`收到kw:${kw}`);
+       return kw.toUpperCase();
+})
+console.log(str);
+  </script>
+ </body>
+</html>

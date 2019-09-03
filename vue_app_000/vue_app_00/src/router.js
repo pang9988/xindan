@@ -3,9 +3,9 @@ import Router from 'vue-router'
 import HelloContainer from "./components/HelloWorld.vue"
 import Home from "./components/weixin/Home.vue"
 // 登录
-import Login from "./components/dan/Login.vue"
+import Login from "./components/dan/common/Login.vue"
  //邮箱登录
- import Email from "./components/dan/Email.vue"
+ import Email from "./components/dan/common/Email.vue"
 // 验证
 // import Regsiter from "./components/jia/Regsiter.vue"
 // 忘记密码

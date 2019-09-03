@@ -15,9 +15,9 @@
       >{{timer==60?"获取验证码":`${timer}s后可重新获取`}}</a>
       <mt-button class="lo-de" size="large" @click="login">登录</mt-button>
       <div class="img3">
-        <img @click="qq" src="./../../assets/qq.png" />
-        <img @click="wx" class="img" src="./../../assets/wx.png" />
-        <img @click="em" src="./../../assets/email.png" />
+        <img @click="qq" src="./../../../assets/qq.png" />
+        <img @click="wx" class="img" src="./../../../assets/wx.png" />
+        <img @click="em" src="./../../../assets/email.png" />
       </div>
       <div class="lo-bottom"> 
         <div>用户注册代表同意</div>

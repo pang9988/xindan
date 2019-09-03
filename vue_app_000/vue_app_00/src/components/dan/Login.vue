@@ -1,7 +1,7 @@
 <template>
   <div class="lo-head">
     <div class="lo-header">
-      <div class="dan">&lt;</div>
+      <div  class="dan">&lt;</div>
       <div class="shou">手机号登录</div>
     </div>
     <div class="lo-login">
@@ -17,9 +17,9 @@
       <div class="img3">
         <img @click="qq" src="./../../assets/qq.png" />
         <img @click="wx" class="img" src="./../../assets/wx.png" />
-        <img src="./../../assets/email.png" />
+        <img @click="em" src="./../../assets/email.png" />
       </div>
-      <div class="lo-bottom">
+      <div class="lo-bottom"> 
         <div>用户注册代表同意</div>
         <span class="lo-span1">&lt;&lt;新蛋网服务协议&gt;&gt;</span>
         <span class="lo-color">&lt;&lt;新蛋网隐私协议&gt;&gt;</span>
@@ -40,6 +40,9 @@ export default {
   },
   //函数
   methods: {
+    em(){
+      this.$router.push("/Email")
+    },
     qq() {
       this.$toast({
         message: "未安装QQ",
@@ -110,6 +113,7 @@ export default {
   display: flex;
   flex-direction: column;
   background: white;
+  color:#3F444A;
 }
 /* 顶部左箭头 */
 .dan {
@@ -129,9 +133,7 @@ export default {
   line-height: 40px;
 }
 /* 顶部与输入框的距离 */
-.lo-login {
-  margin-top: 100px;
-}
+.lo-login {margin-top: 100px;}
 /* 输入框的倒角 */
 .lo-login input[type="text"],
 .lo-login input[type="password"] {
@@ -145,7 +147,7 @@ export default {
 /* 发送验证码的定位 */
 .lo-ma {
   position: absolute;
-  top: 259px;
+  top: 220px;
   right: 43px;
   z-index: 100;
   font-size: 0.8rem;
@@ -166,9 +168,7 @@ export default {
   margin-bottom: 1rem;
   margin-top: 2rem;
 }
-.lo-bottom span {
-  color: #2a4882;
-}
+.lo-bottom span {color: #2a4882;}
 /* img 的弹性 */
 .img3 {
   height: 40px;
@@ -177,20 +177,11 @@ export default {
   margin-top: 30px;
 }
 /* 每个img的大小 */
-.img3 img {
-  width: 40px;
-}
+.img3 img {width: 40px;}
 /* 中间img的距离 */
-.img3 .img {
-  margin: 0 39px;
-}
-
-.lo-bottom div {
-  margin-bottom: 0.8rem;
-}
-.lo-bottom > span {
-  margin-right: 0.8rem;
-}
+.img3 .img {margin: 0 39px;}
+.lo-bottom div {margin-bottom: 0.8rem;}
+.lo-bottom > span {margin-right: 0.8rem;}
 /* 取消框的定位 */
 .mintui-field-error:before {
   position: absolute;

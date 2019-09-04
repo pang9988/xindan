@@ -101,6 +101,18 @@ export default {
         });
         return;
       }
+       //发送ajax 
+       var url="login";
+       var obj={phone:phone};
+       this.axios.get(url,{params:obj}).then(res=>{
+         //回调函数
+         var code=res.data.code;
+         if(code==-1){
+           this.$messagebox("消息","用户名或密码有误");
+         }else{
+           this.$router.push("/Home");
+         }
+       })
     }
   }
 };

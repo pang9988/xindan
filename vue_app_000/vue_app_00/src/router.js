@@ -10,10 +10,14 @@ import Login from "./components/dan/common/Login.vue"
 import Home from "./components/dan/Home.vue"
 //购物车
 // import Cart from "./components/jia/Cart.vue"
+//登录页面
+import Memp from "./components/dan/common/Memp.vue"
 Vue.use(Router)
 export default new Router({
   routes: [
     // {path:'/Cart',component:Cart},
+
+    {path:'/Memp',component:Memp},
     {path:'/Home3',component:Home3},
     {path:'/Email',component:Email},
     {path:'/Login',component:Login},

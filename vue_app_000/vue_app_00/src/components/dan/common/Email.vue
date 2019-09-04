@@ -21,39 +21,52 @@ export default {
     };
   },
   methods: {
-      
     emdechu() {
       this.$router.push("/Login");
     },
     emde() {
-        //正则验证
+      //正则验证
       var e = this.nemail;
-      var u=this.upwd;
-      var p=/^[a-z0-9]\d{8,16}$/;
+      var u = this.upwd;
+      // console.log(e,u);
+      var p = /^[a-z0-9]\d{1,16}$/;
       var re = /^\w+@[a-z0-9]+\.[a-z]{2,4}$/;
       if (!re.test(e)) {
         this.$toast({
           message: "邮箱格式不正确",
           position: "bottom"
         });
-        //   return;
-      }else{
-         if(!p.test(u)){
-              this.$toast({
-              message: "密码格式不正确",
-              position: "bottom"
-        });
-        // return;
-         }
       }
-    },
-
+      if (!p.test(u)) {
+        this.$toast({
+          message: "密码格式不正确",
+          position: "bottom"
+        });
+        return;
+      }
+      //登录按钮发送ajax axios
+      var url = "Email";
+      var obj = { email: e, upwd: u };
+      console.log(obj);
+      this.axios.get(url, { params: obj }).then(res => {
+        console.log(obj);
+        // 回调函数:接收服务器返回数据
+        var code = res.data.code;
+        if (code == -1) {
+          this.$messagebox("消息", "用户名或密码有误");
+        } else {
+           
+           this.$router.push("/Home");
+        
+          
+        }
+      });
+    }
   }
 };
 </script>
 
 <style>
-/* .app-container{padding:0;box-sizing: border-box} */
 .em-head {
   width: 100%;
   height: 500px;

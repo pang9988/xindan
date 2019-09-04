@@ -2,13 +2,19 @@
   <div class="ho-header">
     <div class="ho-search">
       <!-- 1.搜索框组件 -->
-      来了
+      
       <mt-tab-container class="page-tabbar-container" v-model="active">
-        <mt-tab-container-item id="message"></mt-tab-container-item>
+        <!-- 每个显示面板与底部是用id绑定的 -->
+        <mt-tab-container-item id="homepage">
+            主页
+        </mt-tab-container-item>
+        <mt-tab-container-item id="classify">
+            手机分类
+        </mt-tab-container-item>
       </mt-tab-container>
       <!--3:切换面板列表-->
       <mt-tabbar class="ho-color" fixed v-model="active">
-        <mt-tab-item id="message" @click.native="changeState(0)">
+        <mt-tab-item id="homepage" @click.native="changeState(0)">
           <tabbaricon
             :normalImage="require('../../assets/dan.png')"
             :selectedImage="require('../../assets/dans.png')"
@@ -16,7 +22,7 @@
           ></tabbaricon>新蛋
         </mt-tab-item>
 
-        <mt-tab-item id="contact" @click.native="changeState(1)">
+        <mt-tab-item id="classify" @click.native="changeState(1)">
           <tabbaricon
             :normalImage="require('../../assets/fen.png')"
             :selectedImage="require('../../assets/fens.png')"
@@ -24,7 +30,7 @@
           ></tabbaricon>分类
         </mt-tab-item>
 
-        <mt-tab-item id="me" @click.native="changeState(2)">
+        <mt-tab-item id="gou" @click.native="changeState(2)">
           <tabbaricon
             :normalImage="require('../../assets/gou.png')"
             :selectedImage="require('../../assets/gous.png')"
@@ -49,7 +55,8 @@ import TabBarIcon from "./common/TabBaricon.vue";
 export default {
   data() {
     return {
-      active: "message",
+      //默认是显示第一个面板
+      active: "homepage",
       //创建数组保存图片焦点状态
       currentIndex: [
         { isSelect: true },

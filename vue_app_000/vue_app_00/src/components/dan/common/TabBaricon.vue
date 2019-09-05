@@ -1,6 +1,6 @@
 <template>
   <div>
-   <img :src="focused?selectedImage:normalImage" alt="" class="imgstyle"/>
+   <img :src="focused?selectedImage:normalImage" class="imgstyle"/>
   </div>
 </template>
 <script>
@@ -13,8 +13,8 @@ export default {
 }
 </script>
 <style scoped>
- /* .imgstyle{
+ .imgstyle{
    width:30px;
    height:30px;
- } */
+ }
 </style>

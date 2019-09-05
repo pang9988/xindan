@@ -11,13 +11,19 @@ import Home from "./components/dan/Home.vue"
 //购物车
 // import Cart from "./components/jia/Cart.vue"
 //登录页面
-import Memp from "./components/dan/common/Memp.vue"
+// import Memp from "./components/dan/common/Memp.vue"
+//搜索框
+// import SearchBar from "./components/dan/searchbar/SearchBar.vue"
+//主页
+import Mainp from "./components/dan/mainp/Mainp.vue"
 Vue.use(Router)
 export default new Router({
   routes: [
     // {path:'/Cart',component:Cart},
 
-    {path:'/Memp',component:Memp},
+    // {path:'/Memp',component:Memp},
+    {path:'/Mainp',component:Mainp},
+    // {path:'/SearchBar',component:SearchBar},
     {path:'/Home3',component:Home3},
     {path:'/Email',component:Email},
     {path:'/Login',component:Login},

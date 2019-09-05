@@ -2,14 +2,12 @@
   <div class="ho-header">
     <div class="ho-search">
       <!-- 1.搜索框组件 -->
-      
+
       <mt-tab-container class="page-tabbar-container" v-model="active">
         <!-- 每个显示面板与底部是用id绑定的 -->
-        <mt-tab-container-item id="homepage">
-            主页
-        </mt-tab-container-item>
-        <mt-tab-container-item id="classify">
-            手机分类
+        <mt-tab-container-item id="homepage">主页</mt-tab-container-item>
+        <mt-tab-container-item id="me">
+          <memp></memp>
         </mt-tab-container-item>
       </mt-tab-container>
       <!--3:切换面板列表-->
@@ -36,6 +34,7 @@
             :selectedImage="require('../../assets/gous.png')"
             :focused="currentIndex[2].isSelect"
           ></tabbaricon>购物车
+          <!-- currentIndex[] -->
         </mt-tab-item>
         <mt-tab-item id="me" @click.native="changeState(3)">
           <tabbaricon
@@ -52,6 +51,8 @@
 <script>
 //引入切换面板
 import TabBarIcon from "./common/TabBaricon.vue";
+//引入wo面板
+import Memp from "./common/Memp.vue";
 export default {
   data() {
     return {
@@ -68,7 +69,8 @@ export default {
   },
 
   components: {
-    tabbaricon: TabBarIcon
+    tabbaricon: TabBarIcon,
+    memp: Memp
   },
   methods: {
     changeState(n) {
@@ -92,5 +94,8 @@ export default {
 <style>
 .ho-color .mint-tab-item-label {
   color: #666 !important;
+}
+tabbaricon{
+  width:15px;
 }
 </style>

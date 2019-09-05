@@ -10,7 +10,7 @@
       <div class="me-de">
         <div class="me-de1">
           <span class="me-rentou"></span>
-          <span class="me-delv">登录/注册</span>
+          <span @click="MeLv" class="me-delv">登录/注册</span>
         </div>
         <div class="me-tubian">
           <p class="me-p1">
@@ -83,7 +83,16 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data(){
+    return{}
+  },
+  methods:{
+      MeLv(){
+        this.$router.push("/Login")
+      }
+  }
+};
 </script>
 <style>
 *{margin:0;padding:0;}
@@ -106,7 +115,7 @@ export default {};
   background: #fff;
   position: absolute;
   top: 95px;
-  left: 20px;
+  left: 5%;
   z-index: 10;
 }
 .me-de1 {

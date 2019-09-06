@@ -6,7 +6,7 @@
      <div class="mylbt">
 <mt-swipe :auto="2000" :speed="1000">
 <mt-swipe-item v-for="item in items" :key="item.id" style="padding:20px 20px">
-<img  :src="item.url" class="img"/>
+<img  :src="item.url" class="ma-img"/>
 </mt-swipe-item>
 </mt-swipe>
 </div>
@@ -22,15 +22,15 @@ export default {
       items: [
         {
           title: "你的名字",
-          url: "http://127.0.0.1:8080/lvbo1.jpg"
+          url: "http://127.0.0.1:8080/lvbo/lvbo1.jpg"
         },
         {
           title: "我的名字",
-          url: "http://127.0.0.1:8080/lvbo2.jpg"
+          url: "http://127.0.0.1:8080/lvbo/lvbo2.jpg"
         },
         {
           title: "我的名字",
-          url: "http://127.0.0.1:8080/lvbo3.jpg"
+          url: "http://127.0.0.1:8080/lvbo/lvbo3.jpg"
         }
       ]
     };
@@ -53,7 +53,7 @@ border-radius:8px;
 width: 100%;height:59%;
 position: relative!important;
 }
-.img{
+.ma-img{
 width: 100%;
 border-radius: 8px;
 background-position: cover;

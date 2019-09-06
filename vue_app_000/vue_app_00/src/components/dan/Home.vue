@@ -2,10 +2,12 @@
   <div class="ho-header">
     <div class="ho-search">
       <!-- 1.搜索框组件 -->
-
+      
       <mt-tab-container class="page-tabbar-container" v-model="active">
         <!-- 每个显示面板与底部是用id绑定的 -->
-        <mt-tab-container-item id="homepage">主页</mt-tab-container-item>
+             <mt-tab-container-item id="homepage">
+          <mainp></mainp>
+        </mt-tab-container-item>
         <mt-tab-container-item id="me">
           <memp></memp>
         </mt-tab-container-item>
@@ -53,6 +55,8 @@
 import TabBarIcon from "./common/TabBaricon.vue";
 //引入wo面板
 import Memp from "./common/Memp.vue";
+//引入面板
+import Mainp from "./mainp/Mainp.vue"
 export default {
   data() {
     return {
@@ -70,7 +74,8 @@ export default {
 
   components: {
     tabbaricon: TabBarIcon,
-    memp: Memp
+    memp: Memp,
+    mainp:Mainp
   },
   methods: {
     changeState(n) {

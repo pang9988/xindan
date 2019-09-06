@@ -16,12 +16,19 @@ import Home from "./components/dan/Home.vue"
 // import SearchBar from "./components/dan/searchbar/SearchBar.vue"
 //主页
 import Mainp from "./components/dan/mainp/Mainp.vue"
+//搜索
+import Grabble from "./components/dan/searchbar/Grabble.vue"
+//新品上市
+import New from "./components/dan/new/New.vue"
 Vue.use(Router)
 export default new Router({
   routes: [
     // {path:'/Cart',component:Cart},
 
     // {path:'/Memp',component:Memp},
+
+    {path:'/New',component:New},
+    {path:'/Grabble',component:Grabble},
     {path:'/Mainp',component:Mainp},
     // {path:'/SearchBar',component:SearchBar},
     {path:'/Home3',component:Home3},

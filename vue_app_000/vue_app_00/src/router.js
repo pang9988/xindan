@@ -18,19 +18,15 @@ import Home from "./components/dan/Home.vue"
 import Mainp from "./components/dan/mainp/Mainp.vue"
 //搜索
 import Grabble from "./components/dan/searchbar/Grabble.vue"
-//新品上市
-import New from "./components/dan/new/New.vue"
+// 分类
+import Classify from "./components/dan/classify/Classify.vue"
 Vue.use(Router)
 export default new Router({
   routes: [
     // {path:'/Cart',component:Cart},
-
-    // {path:'/Memp',component:Memp},
-
-    {path:'/New',component:New},
+    {path:'/Classify',component:Classify},
     {path:'/Grabble',component:Grabble},
     {path:'/Mainp',component:Mainp},
-    // {path:'/SearchBar',component:SearchBar},
     {path:'/Home3',component:Home3},
     {path:'/Email',component:Email},
     {path:'/Login',component:Login},

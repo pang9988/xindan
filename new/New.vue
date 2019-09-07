@@ -1,12 +1,12 @@
 <template>
   <!-- 新品上市 -->
   <div class="ne-header">
-      <div class="ne-font">新品上市</div>
+      <div class="ne-xin">新品上市</div>
       <div class="ne-content">
         <div class="ne-head" v-for="item in items" :key="item.id">
            <img class="ne-img" :src="item.url"/> 
-           <div>Apple iPhone加大号充气娃娃</div> 
-            <div>￥5388.88</div>
+           <div class="ne-font">Apple iPhone加大号充气气球</div> 
+            <div class="ne-price">￥5388.88</div>
         </div>
   </div>
   </div>
@@ -40,7 +40,8 @@ export default {
 <style>
 .ne-header{
     width:100%;
-    height:500px;
+    height:400px;
+    background:#fff;
 }
 .ne-content{
     box-sizing:border-box;
@@ -50,14 +51,20 @@ export default {
     flex-wrap:wrap;
     
 }
-.ne-head{width:30%;}
-.ne-img{width:100%;}
-/* .ne-head{
-    width:30%;
-    
-} */
+.ne-xin{
+    text-align: center;
+    margin:19px 0 19px 0;
+}
+.ne-head{
+  width:30%;
+  text-align: center;
+}
+.ne-img{width:80%;
+ border-radius: 10px;
+}
+
 .ne-font{
   text-align: center;
-  margin:25px 0 25px ;
+  font-size:0.8rem;
 }
 </style>

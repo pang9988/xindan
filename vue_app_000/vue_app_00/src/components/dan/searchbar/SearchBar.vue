@@ -1,7 +1,7 @@
 <template>
 <div class="se-header">
     <div class="se-head">
-        <input class="se-input" type="text" placeholder="Bose" @click="sesu">
+        <input class="se-input"  type="text" placeholder="Bose" @click="sesu">
         <img class="se-img" :src="require('../../../assets/search.png')"/>
     </div>
 </div>
@@ -23,7 +23,9 @@ export default {
       background:#fff;
       line-height:60px;
       text-align: center;
-       position:relative;
+       /* position:relative; */
+       position:fixed;
+       z-index: 11
   }
   .se-head .se-input{
       width:90%;

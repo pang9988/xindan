@@ -57,6 +57,8 @@ import TabBarIcon from "./common/TabBaricon.vue";
 import Memp from "./common/Memp.vue";
 //引入面板
 import Mainp from "./mainp/Mainp.vue"
+//引入 新品
+// import New from "./new/New.vue"
 export default {
   data() {
     return {
@@ -75,7 +77,8 @@ export default {
   components: {
     tabbaricon: TabBarIcon,
     memp: Memp,
-    mainp:Mainp
+    mainp:Mainp,
+    // new:New
   },
   methods: {
     changeState(n) {
@@ -100,7 +103,7 @@ export default {
 .ho-color .mint-tab-item-label {
   color: #666 !important;
 }
-tabbaricon{
+.tabbaricon{
   width:15px;
 }
 </style>

@@ -20,10 +20,13 @@ import Mainp from "./components/dan/mainp/Mainp.vue"
 import Grabble from "./components/dan/searchbar/Grabble.vue"
 // 分类
 import Classify from "./components/dan/classify/Classify.vue"
+//分类的子
+// import Clacc from "./components/dan/classify/Clacc.vue"
 Vue.use(Router)
 export default new Router({
   routes: [
     // {path:'/Cart',component:Cart},
+    // {path:'/Clacc',component:Clacc},
     {path:'/Classify',component:Classify},
     {path:'/Grabble',component:Grabble},
     {path:'/Mainp',component:Mainp},

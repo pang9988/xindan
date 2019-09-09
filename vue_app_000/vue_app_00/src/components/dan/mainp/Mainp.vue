@@ -72,7 +72,7 @@ export default {
         {
           url: "http://127.0.0.1:8080/lvbo/lvbo3.jpg"
         }
-      ],
+      ], 
       items1: [
         {
           url: "http://127.0.0.1:8080/lvbo/lvbo1.jpg"

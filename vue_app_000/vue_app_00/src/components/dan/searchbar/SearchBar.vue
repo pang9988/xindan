@@ -30,7 +30,7 @@ export default {
   .se-head .se-input{
       width:90%;
       border-radius:25px;
-      padding-left:40px;
+      padding-left:40px !important;
       border:0;
       background:#F7F7F7;
       box-sizing: border-box;

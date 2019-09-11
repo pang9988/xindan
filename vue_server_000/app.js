@@ -37,8 +37,6 @@ server.use(session({
 //7.配置静态目录
 //http://127.0.0.1:8080/01.jpg
 server.use(express.static("public"));
-
-
 //邮箱登录 
 //http://127.0.0.1:8080/email?email=123456@qq.com&upwd=123
 server.get("/Email",(req,res)=>{
@@ -87,5 +85,28 @@ server.get("/Email",(req,res)=>{
          }
      })
  })
+ //功能一:获取数据库的数据
+server.get("/cao",(req,res)=>{
+    var pno=req.query.pno;
+    var ps=req.query.pageSize;
+    if(!pno){
+        pno=1;
+    }if(!ps){
+        ps=4;
+    }
+    //创建sql语句
+    var sql="SELECT lid,img_url,title,price";
+    sql+=" FROM new_list LIMIT ?,?";
+    var offset=(pno-1)*ps;
+    ps=parseInt(ps);
+    //发送sql语句
+    pool.query(sql,[offset,ps],(err,result)=>{
+        if(err) throw err;
+        res.send({
+            code:1,msg:"查询成功",
+            data:result
+        })
+    })
+})
 
 

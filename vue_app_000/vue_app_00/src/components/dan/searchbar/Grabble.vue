@@ -69,7 +69,7 @@ export default {
   .gr-head .gr-input{
       width:75%;
       border-radius:25px;
-      padding-left:40px;
+      padding-left:40px !important;
       border:0;
       background:#F7F7F7;
      
@@ -103,8 +103,8 @@ export default {
         display:inline-block;
         height:35px;
        background:#ddd;
-       margin:15px;
-       padding:10px;
+       margin:15px !important;
+       padding:10px !important;
        border-radius: 15px;
        line-height:15px;
     }

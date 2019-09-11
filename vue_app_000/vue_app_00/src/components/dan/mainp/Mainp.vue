@@ -1,8 +1,8 @@
 <template>
   <div class="ma-header">
+      <!-- 搜索框的引入 -->
     <searchbar></searchbar>
     <div class="ma-head">
-      <!-- 搜索框的引入 -->
       <div class="mylbt">
         <mt-swipe :auto="2000" :speed="1000">
           <mt-swipe-item v-for="item in items" :key="item.id" style="padding:20px 20px">
@@ -14,7 +14,7 @@
 
     <!-- 新品上市 -->
     <div class="ne-header">
-      <div class="ne-xin">新品上市</div>
+      <div class="font-15">新品上市</div>
       <div class="ne-content">
         <div class="ne-head" v-for="item1 in items1" :key="item1.id">
           <img class="ne-img" :src="item1.url" />
@@ -26,7 +26,7 @@
     <div class="div-hun"></div>
     <!-- 人气推荐 -->
     <div class="mo-header">
-      <div class="mo-head">人气推荐</div>
+      <div class="font-15">人气推荐</div>
       <div class="mo-content" v-for="item2 in items2" :key="item2.id">
         <img class="mo-img" :src="item2.url" />
         <div class="mo-div">
@@ -44,15 +44,15 @@
     </div>
     <!-- 为你推荐 -->
     <div class="recommend">
-      <h3 style="margin:25px 0 15px 0;text-align:center;">为你推荐</h3>
+      <h3 class="font-15">为你推荐</h3>
       <div class="re-head">
         <div class="re-content" v-for="item4 in items4" :key="item4.id">
           <img class="re-img" :src="item4.url" />
-          <div>Bose QuietComfort 35无线耳机|| 黑色</div>
-          <div style="margin-top:15px;color:red">￥999.88</div>
+          <div>{{item.title}}</div>
+          <div style="margin-top:15px;color:red">{{item.price}}</div>
         </div>
       </div>
-      <div style="margin-top:80px"></div>
+      <div style="height:80px;"></div>
     </div>
   </div>
 </template>
@@ -61,6 +61,8 @@ import SearchBar from "../searchbar/SearchBar.vue";
 export default {
   data() {
     return {
+       list:[],
+
       value: "",
       items: [
         {
@@ -131,8 +133,32 @@ export default {
       ]
     };
   },
+  created(){
+    //当前组件创建成功回调函数
+    this.loadMore();
+  },
   components: {
     searchbar: SearchBar
+  },
+  methods:{
+        loadMore(){
+      //功能一:当组件创建成功后获取第一页数据 
+      //1:创建url地址
+      var url = "cao";
+      //1.1:将当前页码加一
+      this.pno++;
+      var obj = {pno:this.pno}
+      //2:发送ajax请求获取第一页数据
+      this.axios.get(url,{params:obj}).then(res=>{
+       //3:将数据保存data中
+       //console.log(res.data.data);
+       //this.list = res.data.data;
+       //数组拼接操作 11:30
+       var rows = this.list.concat(res.data.data);
+       //赋值
+       this.list = rows;
+      })
+     }
   }
 };
 </script>
@@ -195,10 +221,11 @@ export default {
   height: 300px;
   display: flex;
   flex-wrap: wrap;
+  
 }
-.ne-xin {
+.font-15 {
   text-align: center;
-  margin: 19px 0 19px 0;
+  margin: 19px 0 19px 0 !important;
 }
 .ne-head {
   width: 30%;
@@ -216,13 +243,13 @@ export default {
 /* 人气推荐 */
 .mo-head {
   text-align: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
 }
 .mo-img {
   width: 30%;
   height: 80%;
-  margin-left: 10px;
+  margin-left: 10px !important;
 }
 .mo-content {
   width: 100%;
@@ -238,8 +265,8 @@ export default {
 .mo-div {
   display: flex;
   flex-direction: column;
-  margin-left: 25px;
-  margin-right: 25px;
+  margin-left: 25px !important;
+  margin-right: 25px !important;
 }
 /* 大图 */
 .tu-img {
@@ -250,13 +277,14 @@ export default {
 .re-img{
   width:100px;
   height:130px;
-  margin-top:19px;
+  margin-top:19px !important;
 }
 .re-head {
   display: flex;
   justify-content:space-around;
   flex-wrap:wrap;
   width:100%;
+  border-radius:10px !important;
 }
 .re-content {
   text-align:center;
@@ -266,6 +294,6 @@ export default {
   background:#fff;
   border-radius:10px;
   box-shadow:0px 0px 9px #ddd inset;
-  margin-top:12px;
+  margin-top:1rem !important;
 }
 </style>

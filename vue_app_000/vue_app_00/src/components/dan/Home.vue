@@ -8,6 +8,9 @@
              <mt-tab-container-item id="homepage">
           <mainp></mainp>
         </mt-tab-container-item>
+          <mt-tab-container-item id="classify">
+          <classify></classify>
+        </mt-tab-container-item>
         <mt-tab-container-item id="me">
           <memp></memp>
         </mt-tab-container-item>
@@ -57,8 +60,8 @@ import TabBarIcon from "./common/TabBaricon.vue";
 import Memp from "./common/Memp.vue";
 //引入面板
 import Mainp from "./mainp/Mainp.vue"
-//引入 新品
-// import New from "./new/New.vue"
+//引入 分类面板
+ import Classify from "./classify/Classify.vue"
 export default {
   data() {
     return {
@@ -78,7 +81,7 @@ export default {
     tabbaricon: TabBarIcon,
     memp: Memp,
     mainp:Mainp,
-    // new:New
+    classify:Classify
   },
   methods: {
     changeState(n) {

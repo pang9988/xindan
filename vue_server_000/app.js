@@ -16,7 +16,7 @@ var pool=mysql.createPool({
 })
 //4.创建 web服务器监听8080端口
 var server=express();
-server.listen(8080);
+server.listen(8081);
 //5.处理跨域cors
 //5.1配置允许访问程序地址(脚手架)
 //http://127.0.0.1:5050  
@@ -85,6 +85,7 @@ server.get("/Email",(req,res)=>{
          }
      })
  })
+
  //功能一:获取数据库的数据
 server.get("/cao",(req,res)=>{
     var pno=req.query.pno;
@@ -95,8 +96,9 @@ server.get("/cao",(req,res)=>{
         ps=4;
     }
     //创建sql语句
-    var sql="SELECT lid,img_url,title,price";
-    sql+=" FROM new_list LIMIT ?,?";
+    var sql="SELECT id,img_url,title,price";
+    sql += " FROM new_list";
+    sql += " LIMIT ?,?";
     var offset=(pno-1)*ps;
     ps=parseInt(ps);
     //发送sql语句
@@ -109,4 +111,29 @@ server.get("/cao",(req,res)=>{
     })
 })
 
+// 人气推荐
+//功能一:获取数据库的数据
+server.get("/md",(req,res)=>{
+    var pno1=req.query.pno;
+    var ps1=req.query.pageSize;
+    if(!pno1){
+        pno1=1;
+    }if(!ps1){
+        ps1=2;
+    }
+    //创建sql语句
+    var sql="SELECT id,img_url,title,price";
+    sql += " FROM ren_qi";
+    sql += " LIMIT ?,?";
+    var offset=(pno1-1)*ps1;
+    ps1=parseInt(ps1);
+    //发送sql语句
+    pool.query(sql,[offset,ps1],(err,result)=>{
+        if(err) throw err;
+        res.send({
+            code:1,msg:"查询成功",
+            data:result
+        })
+    })
+})
 

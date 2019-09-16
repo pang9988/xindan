@@ -94,7 +94,7 @@ INSERT INTO `xd_index_carousel` VALUES ('2', 'lvbo/lvbo2.png', '轮播广告商�
 INSERT INTO `xd_index_carousel` VALUES ('3', 'lvbo/lvbo3.png', '轮播广告商品3');
 
 
-###/*商品列表*/
+###/*为你推荐*/
 CREATE TABLE new_list(
 id INT PRIMARY KEY AUTO_INCREMENT,
 title VARCHAR(40),
@@ -113,4 +113,15 @@ INSERT INTO new_list VALUES(null,"Apple iPhone熊猫毛绒抱枕手机","./img/n
 INSERT INTO new_list VALUES(null,"Apple iPhone熊猫毛绒抱枕手机","./img/newlist/8.jpg",'3999');
 INSERT INTO new_list VALUES(null,"Apple iPhone熊猫毛绒抱枕手机","./img/newlist/9.jpg",'199')
 
-
+###/*人气推荐*/
+CREATE TABLE ren_qi(
+id INT PRIMARY KEY AUTO_INCREMENT,
+title VARCHAR(40),
+img_url VARCHAR(90),
+price DECIMAL(10,2)
+);
+INSERT INTO ren_qi VALUES(null,"Apple iPhone熊猫耳机","./img/renqi/5.jpg",'6199.52');
+INSERT INTO ren_qi VALUES(null,"Apple iPhone90后毛绒抱枕手机","./img/renqi/6.jpg",'3199.41');
+INSERT INTO ren_qi VALUES(null,"Apple iPhone那良村毛绒抱枕手机","./img/renqi/7.jpg",'3109.85');
+INSERT INTO ren_qi VALUES(null,"Apple iPhone廉江电饭煲","./img/renqi/8.jpg",'3999.88');
+INSERT INTO ren_qi VALUES(null,"Apple iPhone廉江热水库","./img/renqi/9.jpg",'199.66')

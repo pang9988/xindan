@@ -26,12 +26,12 @@
     <div class="div-hun"></div>
     <!-- 人气推荐 -->
     <div class="mo-header">
-      <div class="font-15">人气推荐</div>
-      <div class="mo-content" v-for="item2 in items2" :key="item2.id">
-        <img class="mo-img" :src="item2.url" />
+      <div class="font-15" @click="Renqi">人气推荐</div>
+      <div class="mo-content" v-for="item2 in list1" :key="item2.id">
+        <img class="mo-img" :src="'http://127.0.0.1:8081/'+item2.img_url"  />
         <div class="mo-div">
-          <span class="mo-title">Bose QuietComfort 35无线耳机|| 黑色</span>
-          <span class="mo-price">￥999.88</span>
+          <span class="mo-title">{{item2.title}}</span>
+          <span class="mo-price">￥{{item2.price}}</span>
         </div>
       </div>
     </div>
@@ -44,12 +44,12 @@
     </div>
     <!-- 为你推荐 -->
     <div class="recommend">
-      <h3 class="font-15">为你推荐</h3>
+      <h3 class="font-15" @click="loadMore">为你推荐</h3>
       <div class="re-head">
-        <div class="re-content" v-for="item4 in items4" :key="item4.id">
-          <img class="re-img" :src="item4.url" />
-          <div>{{item.title}}</div>
-          <div style="margin-top:15px;color:red">{{item.price}}</div>
+        <div class="re-content" v-for="item4 in list" :key="item4.id">
+          <img class="re-img" :src="'http://127.0.0.1:8081/'+item4.img_url" />
+          <div>{{item4.title}}</div>
+          <div style="margin-top:15px;color:red">￥{{item4.price}}</div>
         </div>
       </div>
       <div style="height:80px;"></div>
@@ -62,86 +62,62 @@ export default {
   data() {
     return {
        list:[],
-
+       pno:0,
+       list1:[],
+       pno1:0,
       value: "",
       items: [
         {
-          url: "http://127.0.0.1:8080/lvbo/lvbo1.jpg"
+          url: "http://127.0.0.1:8081/lvbo/lvbo1.jpg"
         },
         {
-          url: "http://127.0.0.1:8080/lvbo/lvbo2.jpg"
+          url: "http://127.0.0.1:8081/lvbo/lvbo2.jpg"
         },
         {
-          url: "http://127.0.0.1:8080/lvbo/lvbo3.jpg"
-        }
-      ], 
-      items1: [
-        {
-          url: "http://127.0.0.1:8080/lvbo/lvbo1.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8080/lvbo/lvbo2.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8080/lvbo/lvbo3.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8080/lvbo/lvbo1.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8080/lvbo/lvbo3.jpg"
+          url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
         }
       ],
-      items2: [
+      items1: [
         {
-          url: "http://127.0.0.1:8080/lvbo/lvbo1.jpg"
+          url: "http://127.0.0.1:8081/lvbo/lvbo1.jpg"
         },
         {
-          url: "http://127.0.0.1:8080/lvbo/lvbo2.jpg"
+          url: "http://127.0.0.1:8081/lvbo/lvbo2.jpg"
         },
         {
-          url: "http://127.0.0.1:8080/lvbo/lvbo3.jpg"
+          url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
+        },
+        {
+          url: "http://127.0.0.1:8081/lvbo/lvbo1.jpg"
+        },
+        {
+          url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
         }
       ],
       items3: [
         {
-          url: "http://127.0.0.1:8080/lvbo/lvbo1.jpg"
+          url: "http://127.0.0.1:8081/lvbo/lvbo1.jpg"
         },
         {
-          url: "http://127.0.0.1:8080/lvbo/lvbo2.jpg"
+          url: "http://127.0.0.1:8081/lvbo/lvbo2.jpg"
         },
         {
-          url: "http://127.0.0.1:8080/lvbo/lvbo3.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8080/lvbo/lvbo1.jpg"
+          url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
         }
       ],
-      items4: [
-        {
-          url: "http://127.0.0.1:8080/lvbo/lvbo1.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8080/lvbo/lvbo2.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8080/lvbo/lvbo3.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8080/lvbo/lvbo1.jpg"
-        }
-      ]
     };
   },
   created(){
     //当前组件创建成功回调函数
     this.loadMore();
+    this.Renqi();
   },
   components: {
     searchbar: SearchBar
   },
   methods:{
         loadMore(){
+        //  console.log(111);
       //功能一:当组件创建成功后获取第一页数据 
       //1:创建url地址
       var url = "cao";
@@ -153,10 +129,30 @@ export default {
        //3:将数据保存data中
        //console.log(res.data.data);
        //this.list = res.data.data;
-       //数组拼接操作 11:30
+       //
        var rows = this.list.concat(res.data.data);
        //赋值
        this.list = rows;
+      })
+     },
+    //  人气推荐
+      Renqi(){
+         console.log(222);
+      //功能一:当组件创建成功后获取第一页数据 
+      //1:创建url地址
+      var url = "md";
+      //1.1:将当前页码加一
+      this.pno1++;
+      var obj = {pno1:this.pno1}
+      //2:发送ajax请求获取第一页数据
+      this.axios.get(url,{params:obj}).then(res=>{
+       //3:将数据保存data中
+       //console.log(res.data.data);
+       //this.list = res.data.data;
+       //
+       var rows = this.list.concat(res.data.data);
+       //赋值
+       this.list1 = rows;
       })
      }
   }

@@ -185,11 +185,10 @@ export default {
 };
 </script>
 <style>
-<<<<<<< HEAD
 .abddf {
   display: flex;
   flex-direction: column;
-=======
+}
 /* div {
   margin: 0 !important;
   padding: 0 !important;
@@ -199,7 +198,6 @@ export default {
   background: #fff !important;
  border-bottom: 3px solid red !important;
 margin-bottom: 0 
->>>>>>> 功能
 }
 .cl-header {
    height: 800px;

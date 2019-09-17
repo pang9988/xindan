@@ -90,6 +90,8 @@ server.get("/Email",(req,res)=>{
 server.get("/cao",(req,res)=>{
     var pno=req.query.pno;
     var ps=req.query.pageSize;
+    console.log(pno);
+    console.log(ps);
     if(!pno){
         pno=1;
     }if(!ps){
@@ -119,7 +121,7 @@ server.get("/md",(req,res)=>{
     if(!pno1){
         pno1=1;
     }if(!ps1){
-        ps1=2;
+        ps1=4;
     }
     //创建sql语句
     var sql="SELECT id,img_url,title,price";

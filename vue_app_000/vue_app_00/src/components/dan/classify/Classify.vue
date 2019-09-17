@@ -1,6 +1,5 @@
 <template>
   <div class="cl-header">
-<<<<<<< HEAD
     <mt-navbar v-model="selected" class="abddf">
       <mt-tab-item id="1">手机摄影</mt-tab-item>
       <mt-tab-item id="2">电脑外设</mt-tab-item>
@@ -9,8 +8,7 @@
       <mt-tab-item id="3">家用电器</mt-tab-item>
       <mt-tab-item id="3">母婴玩具</mt-tab-item>
     </mt-navbar>
-
-=======
+<!-- 
     <div class="cl-head">
       <mt-navbar v-model="selected" class="left-fz">
         <mt-tab-item class="left-c" id="1">手机摄影</mt-tab-item>
@@ -20,8 +18,8 @@
         <mt-tab-item class="left-c" id="5">家用电器</mt-tab-item>
         <mt-tab-item class="left-c" id="6">母婴玩具</mt-tab-item>
       </mt-navbar>
-    </div>
->>>>>>> 功能
+    </div> -->
+
     <mt-tab-container v-model="selected">
       <mt-tab-container-item id="1">
         <div class="right-content">
@@ -221,9 +219,9 @@ margin-bottom: 0
   display: flex;
   flex-direction: column;
 }
-<<<<<<< HEAD
 
-=======
+
+
 .cl-head .mint-tab-item-label {
   font-size: 1rem !important;
   /* height: 2.5rem; */
@@ -234,7 +232,7 @@ margin-bottom: 0
 .right-dian{
   margin:15px 0 15px;
 }
->>>>>>> 功能
+
 .right-img {
   width: 79px;
 }

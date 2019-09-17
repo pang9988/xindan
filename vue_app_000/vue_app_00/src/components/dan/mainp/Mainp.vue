@@ -117,7 +117,7 @@ export default {
   },
   methods:{
         loadMore(){
-        //  console.log(111);
+         console.log(111);
       //功能一:当组件创建成功后获取第一页数据 
       //1:创建url地址
       var url = "cao";
@@ -127,7 +127,7 @@ export default {
       //2:发送ajax请求获取第一页数据
       this.axios.get(url,{params:obj}).then(res=>{
        //3:将数据保存data中
-       //console.log(res.data.data);
+       console.log(res.data.data);
        //this.list = res.data.data;
        //
        var rows = this.list.concat(res.data.data);
@@ -150,7 +150,7 @@ export default {
        //console.log(res.data.data);
        //this.list = res.data.data;
        //
-       var rows = this.list.concat(res.data.data);
+       var rows = this.list1.concat(res.data.data);
        //赋值
        this.list1 = rows;
       })

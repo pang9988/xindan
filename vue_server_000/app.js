@@ -91,7 +91,6 @@ server.get("/cao",(req,res)=>{
     var pno=req.query.pno;
     var ps=req.query.pageSize;
     console.log(pno);
-    console.log(ps);
     if(!pno){
         pno=1;
     }if(!ps){
@@ -116,21 +115,23 @@ server.get("/cao",(req,res)=>{
 // 人气推荐
 //功能一:获取数据库的数据
 server.get("/md",(req,res)=>{
-    var pno1=req.query.pno;
-    var ps1=req.query.pageSize;
-    if(!pno1){
-        pno1=1;
-    }if(!ps1){
-        ps1=4;
+    var pnoa=req.query.pno;
+    var psa=req.query.pageSize;
+    console.log(psa);
+
+    if(!pnoa){
+        pnoa=1;
+    }if(!psa){
+        psa=4;
     }
     //创建sql语句
     var sql="SELECT id,img_url,title,price";
     sql += " FROM ren_qi";
     sql += " LIMIT ?,?";
-    var offset=(pno1-1)*ps1;
-    ps1=parseInt(ps1);
+    var offset=(pnoa-1)*psa;
+    psa=parseInt(psa);
     //发送sql语句
-    pool.query(sql,[offset,ps1],(err,result)=>{
+    pool.query(sql,[offset,psa],(err,result)=>{
         if(err) throw err;
         res.send({
             code:1,msg:"查询成功",

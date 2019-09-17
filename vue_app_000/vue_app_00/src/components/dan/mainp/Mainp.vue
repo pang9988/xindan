@@ -64,7 +64,7 @@ export default {
        list:[],
        pno:0,
        list1:[],
-       pno1:0,
+       pnoa:0,
       value: "",
       items: [
         {
@@ -142,8 +142,8 @@ export default {
       //1:创建url地址
       var url = "md";
       //1.1:将当前页码加一
-      this.pno1++;
-      var obj = {pno1:this.pno1}
+      this.pnoa++;
+      var obj = {pnoa:this.pnoa}
       //2:发送ajax请求获取第一页数据
       this.axios.get(url,{params:obj}).then(res=>{
        //3:将数据保存data中

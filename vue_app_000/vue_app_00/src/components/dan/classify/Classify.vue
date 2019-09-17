@@ -1,14 +1,5 @@
 <template>
   <div class="cl-header">
-    <mt-navbar v-model="selected" class="abddf">
-      <mt-tab-item id="1">手机摄影</mt-tab-item>
-      <mt-tab-item id="2">电脑外设</mt-tab-item>
-      <mt-tab-item id="3">汽车用品</mt-tab-item>
-      <mt-tab-item id="3">鞑靼箱包</mt-tab-item>
-      <mt-tab-item id="3">家用电器</mt-tab-item>
-      <mt-tab-item id="3">母婴玩具</mt-tab-item>
-    </mt-navbar>
-<!-- 
     <div class="cl-head">
       <mt-navbar v-model="selected" class="left-fz">
         <mt-tab-item class="left-c" id="1">手机摄影</mt-tab-item>
@@ -18,7 +9,7 @@
         <mt-tab-item class="left-c" id="5">家用电器</mt-tab-item>
         <mt-tab-item class="left-c" id="6">母婴玩具</mt-tab-item>
       </mt-navbar>
-    </div> -->
+    </div>
 
     <mt-tab-container v-model="selected">
       <mt-tab-container-item id="1">
@@ -81,7 +72,7 @@
             </div>
           </div>
           <div class="right-dian">喉咙好痛</div>
-          <div class="right-div">
+          <!-- <div class="right-div">
             <div class="right-tu">
               <img class="right-img" src="./../../../assets/1.jpg" />
               <div>米</div>
@@ -98,6 +89,25 @@
               <img class="right-img" src="./../../../assets/4.jpg" />
               <div>小米</div>
             </div>
+          </div> -->
+          <div class="right-dian">电脑</div>
+          <div class="right-div">
+            <div class="right-tu">
+              <img class="right-img" src="./../../../assets/1.jpg" />
+              <div>米</div>
+            </div>
+            <!-- <div class="right-tu">
+              <img class="right-img" src="./../../../assets/2.jpg" />
+              <div>小米</div>
+            </div>
+            <div class="right-tu">
+              <img class="right-img" src="./../../../assets/3.jpg" />
+              <div>小米</div>
+            </div>
+            <div class="right-tu">
+              <img class="right-img" src="./../../../assets/4.jpg" />
+              <div>小米</div>
+            </div> -->
           </div>
           <div class="right-dian">电脑</div>
           <div class="right-div">
@@ -109,33 +119,14 @@
               <img class="right-img" src="./../../../assets/2.jpg" />
               <div>小米</div>
             </div>
-            <div class="right-tu">
+            <!-- <div class="right-tu">
               <img class="right-img" src="./../../../assets/3.jpg" />
               <div>小米</div>
             </div>
             <div class="right-tu">
               <img class="right-img" src="./../../../assets/4.jpg" />
               <div>小米</div>
-            </div>
-          </div>
-          <div class="right-dian">电脑</div>
-          <div class="right-div">
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/1.jpg" />
-              <div>米</div>
-            </div>
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/2.jpg" />
-              <div>小米</div>
-            </div>
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/3.jpg" />
-              <div>小米</div>
-            </div>
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/4.jpg" />
-              <div>小米</div>
-            </div>
+            </div> -->
           </div>
         </div>
       
@@ -187,11 +178,6 @@ export default {
   display: flex;
   flex-direction: column;
 }
-/* div {
-  margin: 0 !important;
-  padding: 0 !important;
-  
-} */
 .mint-navbar .mint-tab-item.is-selected {
   background: #fff !important;
  border-bottom: 3px solid red !important;
@@ -202,7 +188,6 @@ margin-bottom: 0
   width: 100%;
   display: flex;
   background: #fff;
-  /* position: relative; */
    position: fixed;
   left: 0;
   top: 0;
@@ -219,15 +204,11 @@ margin-bottom: 0
   display: flex;
   flex-direction: column;
 }
-
-
-
 .cl-head .mint-tab-item-label {
   font-size: 1rem !important;
   /* height: 2.5rem; */
   margin-top: 0.8rem !important;
 }
-
 /* 右边的样式 */
 .right-dian{
   margin:15px 0 15px;

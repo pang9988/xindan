@@ -9,12 +9,14 @@ import Grabble from "./components/searchbar/Grabble.vue"
 // 分类
 import Classify from "./views/classify/Classify.vue"
 import Mainp from "./views/mainp/Mainp.vue"
+// 商品详情
+import Product from "./views/product/Product.vue"
 Vue.use(Router)
 
 export default new Router({
   routes: [
 
-
+    {path:'/Product',name:'',component:Product},
     {path:'/Classify',name:'',component:Classify},
     {path:'/Grabble',name:'',component:Grabble},
     {path:'/Mainp',name:'',component:Mainp},

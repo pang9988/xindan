@@ -12,7 +12,7 @@
           <mt-tab-item id="3">详情</mt-tab-item>
         </mt-navbar>
       </div>
-      <div ><img style="width:30px" src="./../../assets/diwei.png" alt=""></div>
+      <div ><img style="width:30px" src="./../../assets/h.png" alt=""></div>
       </div>
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">

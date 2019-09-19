@@ -1,7 +1,7 @@
 <template>
   <div class="lo-head">
     <div class="lo-header">
-      <div  class="dan">&lt;</div>
+      <div  class="dan" @click="$router.back(-1)" >&lt;</div>
       <div class="shou">手机号登录</div>
     </div>
     <div class="lo-login">

@@ -16,13 +16,13 @@
       </div>
       <!-- 手动轮播图片 -->
       <div class="pr-showdou">
-        <mt-swipe :auto="40000000">
-          <mt-swipe-item v-for="item in items" :key="item.id">
-            <img :src="item.url" class="showimg" />
+        <mt-swipe :auto="4000" $ref="active">
+          <mt-swipe-item v-for="(item,index) in items" :key="item.id" >
+            <img :src="item.url" class="showimg" @click="plotClick(item.id,index)"/>
           </mt-swipe-item>
         </mt-swipe>
       </div>
-      <div class="aaa">3/3</div>
+      <div class="aaa">{{i}}/3</div>
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
           <mt-cell v-for="n in 10" :title="'内容 ' + n" :key="n" />
@@ -45,6 +45,9 @@ export default {
   data() {
     return {
       selected: "",
+      id:"",
+      index:"",
+      i:0,
       items: [
         {
           url: "http://127.0.0.1:8081/lvbo/lvbo1.jpg"
@@ -58,6 +61,14 @@ export default {
       ]
     };
   },
+  methods:{
+    plotClick(id,index){
+      console.log(id,index);
+      this.i++;
+      
+    }
+  }
+  
 };
 </script>
 <style>

@@ -16,12 +16,13 @@
       </div>
       <!-- 手动轮播图片 -->
       <div class="pr-showdou">
-        <mt-swipe :auto="0">
+        <mt-swipe :auto="40000000">
           <mt-swipe-item v-for="item in items" :key="item.id">
             <img :src="item.url" class="showimg" />
           </mt-swipe-item>
         </mt-swipe>
       </div>
+      <div class="aaa">3/3</div>
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
           <mt-cell v-for="n in 10" :title="'内容 ' + n" :key="n" />
@@ -56,7 +57,7 @@ export default {
         }
       ]
     };
-  }
+  },
 };
 </script>
 <style>
@@ -94,7 +95,9 @@ export default {
   width: 100%;
   height: 100%;
 }
-.mint-swipe-indicators{
-
+.aaa{
+  position:absolute;
+  top:0px;
+  left:0px;
 }
 </style>

@@ -17,7 +17,7 @@
       <div class="font-15">新品上市</div>
       <div class="ne-content">
         <div class="ne-head" v-for="item1 in items1" :key="item1.id">
-          <img class="ne-img" :src="item1.url" />
+          <img class="ne-img" :src="item1.url" @click="cao" />
           <div class="ne-font">Apple iPhone加大号充气气球</div>
           <div class="ne-price">￥5388.88</div>
         </div>
@@ -116,6 +116,9 @@ export default {
     searchbar: SearchBar
   },
   methods:{
+         cao(){
+           this.$router.push("/Product")
+       },
         loadMore(){
          console.log(111);
       //功能一:当组件创建成功后获取第一页数据 

@@ -178,7 +178,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
-.mint-navbar .mint-tab-item.is-selected {
+.cl-head .mint-navbar .mint-tab-item.is-selected {
   background: #fff !important;
  border-bottom: 3px solid red !important;
 margin-bottom: 0 

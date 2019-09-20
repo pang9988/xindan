@@ -1,114 +1,81 @@
 <template>
   <div class="pr-header">
     <div class="pr-head">
-      <div class="pr-jin">
-        <div style="font-size:25px" @click="$router.back(-1)">&lt;</div>
-        <div class="pr-top">
-          <mt-navbar v-model="selected">
+          <mt-navbar class="pr-jin" fixed v-model="selected ">
+            <div style="font-size:25px" @click="$router.back(-1)">&lt;</div>
+            <div class="pr-bottom">
             <mt-tab-item id="1">商品</mt-tab-item>
             <mt-tab-item id="2">评价</mt-tab-item>
             <mt-tab-item id="3">详情</mt-tab-item>
-          </mt-navbar>
-        </div>
-        <div>
-          <img style="width:25px" src="./../../assets/h.png" alt />
-        </div>
+            </div>
+              <div><img @click="$router.back(-1)" style="width:25px" src="./../../assets/h.png" alt /></div>
+          </mt-navbar> 
       </div>
-      <!-- 手动轮播图片 -->
-      <div class="pr-showdou">
-        <mt-swipe :auto="4000" $ref="active">
-          <mt-swipe-item v-for="(item,index) in items" :key="item.id" >
-            <img :src="item.url" class="showimg" @click="plotClick(item.id,index)"/>
-          </mt-swipe-item>
-        </mt-swipe>
+      <div class="pr-min">
+        <mt-tab-container v-model="selected">
+          <mt-tab-container-item id="1" >
+            <commodit></commodit>
+          </mt-tab-container-item>
+          <mt-tab-container-item id="2">
+            <evaluat></evaluat>
+          </mt-tab-container-item>
+          <mt-tab-container-item id="3">
+            <mt-cell v-for="n in 6" :title="'选项 ' + n" :key="n" />
+          </mt-tab-container-item>
+        </mt-tab-container>
       </div>
-      <div class="aaa">{{i}}/3</div>
-      <mt-tab-container v-model="selected">
-        <mt-tab-container-item id="1">
-          <mt-cell v-for="n in 10" :title="'内容 ' + n" :key="n" />
-        </mt-tab-container-item>
-        <mt-tab-container-item id="2">
-          <mt-cell v-for="n in 4" :title="'测试 ' + n" :key="n" />
-        </mt-tab-container-item>
-        <mt-tab-container-item id="3">
-          <mt-cell v-for="n in 6" :title="'选项 ' + n" :key="n" />
-        </mt-tab-container-item>
-      </mt-tab-container>
     </div>
-  </div>
+ 
 </template>
 <script>
-//引入better-scroll组件
-import BScroll from "better-scroll";
-import { Swipe, SwipeItem } from "mint-ui";
+//引入商品的组件
+import Commodit from "./Commodit.vue";
+//引入评论
+import Evaluat from "./Evaluat.vue";
 export default {
   data() {
     return {
-      selected: "",
-      id:"",
-      index:"",
-      i:0,
-      items: [
-        {
-          url: "http://127.0.0.1:8081/lvbo/lvbo1.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8081/lvbo/lvbo2.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
-        }
-      ]
+      selected: "1"
     };
   },
-  methods:{
-    plotClick(id,index){
-      console.log(id,index);
-      this.i++;
-      
-    }
+  components: {
+    commodit: Commodit,
+    evaluat:Evaluat
   }
-  
 };
 </script>
-<style>
-.pr-head .mint-header {
-  color: #000;
-  background: #fff;
+<style scoped>
+*{padding:0 !important;padding:0!important;}
+mt-tab-container-item{
+  padding: 0!important;margin: 0!important;
+  height: 1000px!important;
 }
 .pr-header {
   width: 100%;
   height: 500px;
 }
+.pr-head .mint-header {
+  color: #000;
+  background: #fff;
+}
 .pr-top .mint-navbar {
   width: 50%;
 }
 .pr-jin {
+  height:40px;
+  width:100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 0 10px;
+   border-bottom:1px solid #ddd; 
 }
-.pr-top {
-  width: 100%;
-  display: flex;
-  justify-content: center !important;
+.pr-bottom{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width:40%;
 }
-/* 手动轮播图片 */
-.pr-showdou {
-  width: 100%;
-  height: 320px;
-  position: absolute;
-  top: -44px;
-  left: 0px;
-}
-.showimg {
-  width: 100%;
-  height: 100%;
-}
-.aaa{
-  position:absolute;
-  top:0px;
-  left:0px;
+.pr-bottom .mint-tab-item{
+  flex:none;
 }
 </style>

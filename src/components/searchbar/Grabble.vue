@@ -4,14 +4,14 @@
         <input class="gr-input" type="text" placeholder="Bose">
         
         <img class="gr-img" :src="require('../../assets/search.png')"/>
-        <span style="margin-left:2%" @click="grquxiao">取消</span>
+        <span style="margin-left:2%" @click="$router.back(-1)">取消</span>
     </div>
     <div class="gr-lishi">
         <div  class="gr-lisi">
          <span style="margin-left:15px;margin-top:15px">历史记录</span>
          <span class="gr-shaichu"><img :src="require('../../assets/delete.png')"  style="margin:15px; width:15px"></span>
           </div>
-         <div>
+         <div> 
           <span class="gr"></span>
           <span class="gr"></span>
           <span class="gr"></span>
@@ -44,9 +44,9 @@
 <script>
 export default {
    methods:{
-       grquxiao(){
-           this.$router.push("/Home")
-       }
+    //    grquxiao(){
+    //        this.$router.push("/Home")
+    //    }
    } 
 }
 </script>

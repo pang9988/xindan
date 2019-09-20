@@ -32,7 +32,8 @@
       <!-- 我的订单 -->
        <div class="me-dian">
           <div class="me-divwo">
-              <div>我的订单</div>
+              <div style="margin-left:15px;">我的订单</div>
+              <p style="margin-right:15px;">全部订单 &gt;</p>
           </div>
           <div class="me-flow">
           <div>
@@ -63,7 +64,7 @@
         </div>
         <div class="me-serve">
           <div class="me-myfuwu">
-              <div>我的服务</div>
+              <div style="font-size:1rem;">我的服务</div>
           </div>
           <div class="me-site">
               <div>
@@ -72,11 +73,11 @@
               </div>
               <div>
                   <img src="./../../assets/qian.png">
-                  <p>收货地址</p>
+                  <p>积分中心</p>
               </div>
               <div>
                   <img src="./../../assets/customer.png">
-                  <p>收货地址</p>
+                  <p>帮助与客服</p>
               </div>
           </div>
         </div>
@@ -102,11 +103,11 @@ export default {
 }
 .me-bgblack {
   width: 100%;
-  min-height: 150px;
+  min-height: 120px;
   background: #000;
 }
 .me-white {
-  min-height: 400px;
+  height: 500px;
   background: #f7f7f7;
 }
 .me-de {
@@ -115,9 +116,9 @@ export default {
   border-radius: 5px;
   background: #fff;
   position: absolute;
-  top: 95px;
+  top: 60px;
   left: 5%;
-  z-index: 10;
+  z-index: 1;
 }
 .me-de1 {
   display: flex;
@@ -152,9 +153,9 @@ export default {
     height:130px;
     background:#fff;
     position:absolute;
-    top:235px;
+    top:190px;
     left:0px;
-    z-index:11;
+    z-index:1;
 }
 .me-dian div img{
     width:25px;
@@ -166,7 +167,13 @@ export default {
     align-items: center;
     margin-top:30px;
 }
-.me-divwo{margin:15px 0 0 15px; }
+.me-divwo{
+  width:100%;
+  height:30px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+   }
 .me-flow div{text-align: center;}
 .me-serve{
      margin-top:19px;
@@ -174,9 +181,9 @@ export default {
     height:130px;
     background:#fff;
     position:absolute;
-    top:383px;
+    top:331px;
     left:0px;
-    z-index:11;
+    z-index:1;
 }
 .me-myfuwu{
     margin:15px 0 0 15px;
@@ -193,5 +200,8 @@ export default {
 }
 .me-site div{
     text-align:center;
+}
+.me-dian p,.me-site p{
+  font-size:0.5rem;
 }
 </style>

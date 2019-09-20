@@ -117,7 +117,7 @@ export default {
   }
 };
 </script>
-<style>
+<style >
 /* 外面 */
 .lo-head {
   width: 100%;

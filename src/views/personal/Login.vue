@@ -1,7 +1,8 @@
 <template>
   <div class="lo-head">
     <div class="lo-header">
-      <div  class="dan" @click="$router.back(-1)" >&lt;</div>
+      <!-- <div  class="dan" @click="$router.back(-1)" >&lt;</div> -->
+      <img style="width:30px;margin-top: 4px;" @click="$router.back(-1)" :src="require('../../assets/zouback.png')">
       <div class="shou">手机号登录</div>
     </div>
     <div class="lo-login">
@@ -110,7 +111,7 @@ export default {
          if(code==-1){
            this.$messagebox("消息","用户名或密码有误");
          }else{
-           this.$router.push("/Home");
+           this.$router.push("/");
          }
        })
     }
@@ -128,10 +129,10 @@ export default {
   color:#3F444A;
 }
 /* 顶部左箭头 */
-.dan {
+/* .dan {
   float: left;
   font-size: 30px;
-}
+} */
 /* 顶部文字居中 */
 .shou {
   text-align: center;

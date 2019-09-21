@@ -1,7 +1,8 @@
 <template>
   <div class="em-head">
     <div class="em-header">
-      <div @click="emdechu" class="em-tou">&lt;</div>
+      <!-- <div @click="emdechu" class="em-tou">&lt;</div> -->
+       <img style="width:30px; height:30px;margin-top:4px;" @click="$router.back(-1)" :src="require('../../assets/zouback.png')">
       <div class="em-sha">邮箱登录</div>
       <div @click="emdechu" class="em-cha">X</div>
     </div>

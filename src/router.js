@@ -15,11 +15,17 @@ import Product from "./views/product/Product.vue"
 import Commodit from "./views/product/Commodit.vue"
 //评价
 import Evaluat from "./views/product/Evaluat.vue"
+// 商品列表
+import Tabulateall from "./views/tabulate/Tabulateall.vue"
+// 购物车
+import Cart from "./views/cart/Cart.vue"
 Vue.use(Router)
 
 export default new Router({
   routes: [
 
+    {path:'/Cart',name:'',component:Cart},
+    {path:'/Tabulateall',name:'',component:Tabulateall},
     {path:'/Evaluat',name:'',component:Evaluat},
     {path:'/Commodit',name:'',component:Commodit},
     {path:'/Product',name:'',component:Product},

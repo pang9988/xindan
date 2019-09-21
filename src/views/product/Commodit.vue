@@ -17,18 +17,18 @@
             <p>收藏</p>
           </div>
         </div>
-         <h5 style="height:50px;padding-left:12px;">Bose QuietComfort35无线子机||-黑色</h5>
+         <h5 class="co-biaoti">Bose QuietComfort35无线子机||-黑色</h5>
         <div style="height:10px;background:#ddd"></div>
         <!-- 促销的 -->
         <div class="co-zhuxiao">
              <ul class="co-uiz">
                 <li>促销</li>
-                <li class="co-tou">&gt;</li>
+                <li class="co-tou"><img class="imgrigh-tou" :src="require('../../assets/rightback.png')"></li>
             </ul>
            <ul class="co-uiz">
                 <li>选择</li> 
                 <li style="margin-left:15px;">QC35ll 黑色</li> 
-                <li class="co-tou">&gt;</li>
+                <li class="co-tou"><img class="imgrigh-tou" :src="require('../../assets/rightback.png')"></li>
             </ul>
             <ul class="co-uiz">
              <li>商品</li>  
@@ -37,6 +37,16 @@
         </div>
       </div>
     </div>
+
+    <div class="co-bottom">   
+      <div class="co-below"> 
+        <img class="imgbottom" :src="require('../../assets/customer.png')">
+         <img class="imgbottom" :src="require('../../assets/cart.png')">
+         <button class="cojiaru jia">加入购物车 </button>
+         <button class="cojiaru mai">立即购买</button>
+      </div>
+    </div>
+
   </div>
 </template>
 <script>
@@ -80,7 +90,8 @@ export default {
 p,li{color:#333;}
 #co{
   width: 100%;
-  height: 800px;
+  height: 486px;
+  position:relative;
 }
 /* 手动轮播图片 */
 .co-showdou {
@@ -123,5 +134,40 @@ p,li{color:#333;}
     padding:12px;
     border-bottom:1px solid #ddd;  
 }
-
+.co-biaoti{
+  margin-left:15px!important;
+}
+.co-bottom{
+  width:100%;
+  height:40px;
+  /* border:1px solid #f00; */
+  position: fixed;
+ bottom:0;
+  right:0;
+  z-index:10;
+  text-align:right;
+}
+.cojiaru{
+  width:38%;
+  height:40px;
+   border:0;
+  color:#fff;
+  outline: 0;
+  
+}
+.co-below{
+  background:#fff;
+}
+.imgbottom{
+  width:20px;
+  height:20px;
+  margin-right:15px;
+ 
+}
+.jia{
+  background:#0C081C;
+}
+.mai{
+    background:#E51B24;
+}
 </style>

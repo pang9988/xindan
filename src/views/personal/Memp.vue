@@ -33,7 +33,7 @@
        <div class="me-dian">
           <div class="me-divwo">
               <div style="margin-left:15px;">我的订单</div>
-              <p style="margin-right:15px;">全部订单 &gt;</p>
+              <p style="margin-right:15px;">全部订单 <img class="imgrigh-tou" :src="require('../../assets/rightback.png')"></p>
           </div>
           <div class="me-flow">
           <div>
@@ -204,4 +204,5 @@ export default {
 .me-dian p,.me-site p{
   font-size:0.5rem;
 }
+
 </style>

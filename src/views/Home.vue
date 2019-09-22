@@ -11,6 +11,9 @@
           <mt-tab-container-item id="classify">
           <classify></classify>
         </mt-tab-container-item>
+          <mt-tab-container-item id="gou">
+          <cart></cart>
+        </mt-tab-container-item>
         <mt-tab-container-item id="me">
           <memp></memp>
         </mt-tab-container-item>
@@ -62,6 +65,8 @@ import Memp from "./personal/Memp.vue";
 import Mainp from "./mainp/Mainp.vue"
 //引入 分类面板
  import Classify from "./classify/Classify.vue"
+//  引入购物车
+import Cart from "./cart/Cart.vue"
 export default {
   data() {
     return {
@@ -81,7 +86,8 @@ export default {
     tabbaricon: TabBarIcon,
     memp: Memp,
     mainp:Mainp,
-    classify:Classify
+    classify:Classify,
+    cart:Cart
   },
   methods: {
     changeState(n) {

@@ -72,42 +72,14 @@
             </div>
           </div>
           <div class="right-dian">喉咙好痛</div>
-          <!-- <div class="right-div">
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/1.jpg" />
-              <div>米</div>
-            </div>
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/2.jpg" />
-              <div>小米</div>
-            </div>
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/3.jpg" />
-              <div>小米</div>
-            </div>
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/4.jpg" />
-              <div>小米</div>
-            </div>
-          </div> -->
+       
           <div class="right-dian">电脑</div>
           <div class="right-div">
             <div class="right-tu">
               <img class="right-img" src="./../../assets/1.jpg" />
               <div>米</div>
             </div>
-            <!-- <div class="right-tu">
-              <img class="right-img" src="./../../../assets/2.jpg" />
-              <div>小米</div>
-            </div>
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/3.jpg" />
-              <div>小米</div>
-            </div>
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/4.jpg" />
-              <div>小米</div>
-            </div> -->
+           
           </div>
           <div class="right-dian">电脑</div>
           <div class="right-div">
@@ -119,14 +91,7 @@
               <img class="right-img" src="./../../assets/2.jpg" />
               <div>小米</div>
             </div>
-            <!-- <div class="right-tu">
-              <img class="right-img" src="./../../../assets/3.jpg" />
-              <div>小米</div>
-            </div>
-            <div class="right-tu">
-              <img class="right-img" src="./../../../assets/4.jpg" />
-              <div>小米</div>
-            </div> -->
+           
           </div>
         </div>
       

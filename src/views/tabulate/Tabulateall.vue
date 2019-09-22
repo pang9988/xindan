@@ -5,7 +5,13 @@
         <img class="ta-fanhui" :src="require('../../assets/zouback.png')" />
         <input class="ta-input" type="text" placeholder="超火的商品在这里" />
         <img class="ta-img" :src="require('../../assets/search.png')" />
-        <img class="taspan-img" :src="require('../../assets/normal.png')" />
+        <!-- <img class="taspan-img" v-if="shi==false" @click="shi1" :src="require('../../assets/normal.png')" /> -->
+        <img class="taspan-img" v-if="shi==false" @click="shi1" src='../../assets/normal.png'/>
+        <!-- <img class="taspan-img"  @click="shi1" :src="require('../../assets/normal.png')" /> -->
+        <!-- <img class="taspan-img" v-else @click="sha1" :src="require('../../assets/ressed.png')" /> -->
+        <img class="taspan-img" v-else @click="sha1" src='../../assets/ressed.png'/>
+        <!-- <img class="taspan-img"  @click="sha1" :src="require('../../assets/ressed.png')"/> -->
+       
         <!-- <span>
           <tab
             :taImage="require('../../assets/normal.png')"
@@ -39,7 +45,7 @@
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10"
     > -->
-      <div class="ta-content" v-for="(item,index) of list" :key="index">
+      <div class="ta-content" @click="tadianl" v-for="(item,index) of list" :key="index">
         <img class="tacon-img" :src="'http://127.0.0.1:8081/'+item.img_url" />
         <div class="ta-title">
           <div style="font-weight:600;height:30px;">{{item.title}}</div>
@@ -60,7 +66,8 @@ export default {
     return {
       list: [],
       pnopro: 0,
-      pspro: 0
+      pspro: 0,
+      shi:false
     };
   },
   //   components: {
@@ -100,8 +107,18 @@ export default {
 
    navv(){
   console.log(1233)
-   }
+   },
+  //  图标的变化
+   sha1(){this.shi=false;},
+   shi1(){this.shi=true;},
+   //  路由跳转
+  tadianl(id){
+     this.$router.push({
+       path:`"/Product"/${id}`
+     })
   }
+  }
+
 };
 </script>
 <style>

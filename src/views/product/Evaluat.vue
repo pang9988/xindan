@@ -46,6 +46,7 @@
       </div>
       </div>
     </div>
+    <div style="margin-top:100px;"></div>
   </div>
 </template>
 <script>
@@ -58,6 +59,7 @@ export default {};
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ddd;
+  padding:0 8px 0 8px;
 }
 .img-qw {
   width: 25px;

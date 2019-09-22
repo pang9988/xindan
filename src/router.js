@@ -19,11 +19,14 @@ import Evaluat from "./views/product/Evaluat.vue"
 import Tabulateall from "./views/tabulate/Tabulateall.vue"
 // 购物车
 import Cart from "./views/cart/Cart.vue"
+// 路由传参哈
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
 
+    // {path:'/Product/:id',name:'Product',component:Product},
     {path:'/Cart',name:'',component:Cart},
     {path:'/Tabulateall',name:'',component:Tabulateall},
     {path:'/Evaluat',name:'',component:Evaluat},

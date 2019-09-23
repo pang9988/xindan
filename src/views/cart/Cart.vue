@@ -17,29 +17,44 @@
 
     <div class="ca-libian">
       <div>
-       <div class="yuan wi" @click="gouu">
+        <div class="yuan wi" @click="gouu">
           <div :class="{xin:uin}">
             <div class="gou"></div>
           </div>
         </div>
-        </div>
+      </div>
       <div class="ca-tupian">
-       <div>
+        <div>
           <img style="width:90px" src="./../../assets/01.jpg" />
-       </div>
+        </div>
         <div class="ca-wenzi">
           待遇:140元日结，中途会发牛奶，面包，矿泉水等午餐。
           要求:年龄16-40周岁
           <div class="ca-price">
             <span class="ca-qian">￥19555.55</span>
             <span>
-              <button class="ca-btn">-</button>
-              <span class="ca-shuozi">5</span>
-              <button class="ca-btn">+</button>
+              <button class="ca-btn" @click="change(-1)">-</button>
+              <span class="ca-shuozi">{{n}}</span>
+              <button class="ca-btn" @click="change(1)">+</button>
             </span>
           </div>
         </div>
       </div>
+    </div>
+    <!-- 结算 -->
+    <div class="ca-quanxuan1">
+      <div class="yuan yuan1" @click="gouu">
+        <div :class="{xin:uin}">
+          <div class="gou"></div>
+        </div>
+      </div>
+      <div class="ca-jiesuan">
+          <div class="ca-zi">全选</div>
+          <div>合计<span class="ca-qian">:￥0.00</span></div>
+          <button class="ca-quje">去结算</button>
+         
+      </div>
+    
     </div>
   </div>
 </template>
@@ -48,23 +63,37 @@ export default {
   data() {
     return {
       uin: 0,
-      isLogin: true
+      isLogin: true,
+      n: 0
     };
   },
   methods: {
+    // 选中变红的
     gouu() {
       this.uin == 1 ? (this.uin = 0) : (this.uin = 1);
     },
+    // 编辑完成文字的
     login() {
       this.isLogin = true;
     },
     logout() {
       this.isLogin = false;
+    },
+    // 数量加减
+    change(i) {
+      this.n += i;
+      this.n < 1 && (this.n = 1);
     }
   }
 };
 </script>
 <style>
+.ca-content{
+  width:100%;
+  height:500px;
+  position:relative;
+ 
+}
 .ca-head {
   width: 100%;
   height: 3rem;
@@ -122,11 +151,11 @@ export default {
 .ca-libian {
   display: flex;
   align-items: center;
-  padding:12px;
-  border-bottom:1px solid #ddd;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
 }
 .ca-wenzi {
-  padding-left:12px;
+  padding-left: 12px;
 }
 .ca-tupian {
   display: flex;
@@ -135,26 +164,54 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top:1.5rem;
+  margin-top: 1.5rem;
 }
 /* 按钮的修饰 */
-.ca-shuozi{
-    display: inline-block;
-    background: #ddd;
-    width: 30px;
-    height: 15px;
-    text-align: center;
-    line-height: 15px;
+.ca-shuozi {
+  display: inline-block;
+  background: #ddd;
+  width: 30px;
+  height: 15px;
+  text-align: center;
+  line-height: 15px;
 }
-.ca-btn{
-  width:25px;
-  background:rgba(0,0,0,0);
-  border:0;
+.ca-btn {
+  width: 25px;
+  background: rgba(0, 0, 0, 0);
+  border: 0;
   outline: 0;
 }
-.ca-qian{
-  color:red;
-  font-size:0.8rem;
-  font-weight:600
+.ca-qian {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.ca-quanxuan1{
+  width:100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  background: #ddd;
+  position:fixed;
+  bottom:57px;
+  right:0px;
+}  
+.ca-jiesuan{
+  width:100%;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ca-quje{
+  width:150px;
+  height:50px;
+  border:0;
+  outline:0;
+  background:#f00;
+  color:#fff;
+}
+.yuan1{
+  margin-left:13px;
 }
 </style>

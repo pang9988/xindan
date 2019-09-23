@@ -1,6 +1,8 @@
 <template>
   <div class="cl-header">
     <div class="cl-head">
+      <div style="width:90px">
+        <div>
       <mt-navbar v-model="selected" class="left-fz">
         <mt-tab-item class="left-c" id="1">手机摄影</mt-tab-item>
         <mt-tab-item class="left-c" id="2">电脑外设</mt-tab-item>
@@ -9,6 +11,8 @@
         <mt-tab-item class="left-c" id="5">家用电器</mt-tab-item>
         <mt-tab-item class="left-c" id="6">母婴玩具</mt-tab-item>
       </mt-navbar>
+      </div>
+      </div>
     </div>
 
     <mt-tab-container v-model="selected">
@@ -26,6 +30,18 @@
             </div>
             <div class="right-tu">
               <img class="right-img" src="./../../assets/3.jpg" />
+              <div>小米</div>
+            </div>
+            <div class="right-tu">
+              <img class="right-img" src="./../../assets/4.jpg" />
+              <div>小米</div>
+            </div>
+            <div class="right-tu">
+              <img class="right-img" src="./../../assets/4.jpg" />
+              <div>小米</div>
+            </div>
+            <div class="right-tu">
+              <img class="right-img" src="./../../assets/4.jpg" />
               <div>小米</div>
             </div>
             <div class="right-tu">
@@ -180,12 +196,13 @@ margin-bottom: 0
 }
 
 .right-img {
-  width: 79px;
+  width: 70px;
 }
 .right-content {
   height: 800px;
-  width: 90%;
+  width: 100%;
   overflow:auto;
+  padding:12px;
  
 }
 .right-div {

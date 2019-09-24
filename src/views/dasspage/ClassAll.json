@@ -1,0 +1,146 @@
+{
+    "shouji":[
+        {
+           "url": "http://127.0.0.1:8081/sort/shouji/1.jpg",
+           "title":"小米"
+        },
+        {
+           "url": "http://127.0.0.1:8081/sort/shouji/2.jpg",
+           "title":"vivo"
+        }
+      ],
+      "pinguo":[
+         {
+            "url": "http://127.0.0.1:8081/sort/shouji/18.jpg",
+            "title":"iphone"
+         }
+      ],
+      "xiangji":[
+         {
+            "url": "http://127.0.0.1:8081/sort/shouji/3.jpg",
+            "title":"单电"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/shouji/4.jpg",
+            "title":"相机"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/shouji/5.jpg",
+            "title":"仿古相机"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/shouji/6.jpg",
+            "title":"黑色相机"
+         }
+        
+      ],
+      "neikai":[
+         {
+            "url": "http://127.0.0.1:8081/sort/shouji/10.jpg",
+            "title":"16G"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/shouji/11.jpg",
+            "title":"32G"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/shouji/12.jpg",
+            "title":"64G"
+         } ,
+        
+         {
+            "url": "http://127.0.0.1:8081/sort/shouji/14.jpg",
+            "title":"128G"
+         } 
+      ],
+      "diannaozhengji":[
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/16.jpg",
+            "title":"笔记本"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/17.jpg",
+            "title":"平板配件"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/18.jpg",
+            "title":"平板"
+         } ,
+        
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/19.jpg",
+            "title":"笔记本无边"
+         } 
+      ],
+      "erji":[
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/1.jpg",
+            "title":"耳机"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/2.jpg",
+            "title":"耳塞"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/3.jpg",
+            "title":"耳麦"
+         } ,
+        
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/4.jpg",
+            "title":"蓝牙耳机"
+         } 
+      ],
+      "sunbiao":[
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/8.jpg",
+            "title":"鼠标"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/11.jpg",
+            "title":"键盘"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/9.jpg",
+            "title":"无线鼠标"
+         } ,
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/12.jpg",
+            "title":"帅的"
+         } ,
+         {
+            "url": "http://127.0.0.1:8081/sort/shouji/10.jpg",
+            "title":"16G"
+         }
+      ],
+      "wangsb":[
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/13.jpg",
+            "title":"大功率"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/14.jpg",
+            "title":"三线的"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/15.jpg",
+            "title":"酷三线的"
+         } 
+        
+      ],
+      "dajinji":[
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/5.jpg",
+            "title":"电激打印机"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/6.jpg",
+            "title":"油水打印机"
+         },
+         {
+            "url": "http://127.0.0.1:8081/sort/dianwan/7.jpg",
+            "title":"多功能打印机"
+         } 
+        
+      ]
+}

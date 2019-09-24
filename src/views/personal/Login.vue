@@ -44,6 +44,7 @@ export default {
     em(){
       this.$router.push("/Email")
     },
+  
     qq() {
       this.$toast({
         message: "未安装QQ",

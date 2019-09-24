@@ -26,7 +26,8 @@ Vue.use(Router)
 export default new Router({
   routes: [
 
-    // {path:'/Product/:id',name:'Product',component:Product},
+  
+    // {path:'/Product/:id',name:'',component:Product},
     {path:'/Cart',name:'',component:Cart},
     {path:'/Tabulateall',name:'',component:Tabulateall},
     {path:'/Evaluat',name:'',component:Evaluat},

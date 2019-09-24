@@ -1,6 +1,6 @@
 <template>
   <div class="ma-header">
-      <!-- 搜索框的引入 -->
+    <!-- 搜索框的引入 -->
     <searchbar></searchbar>
     <div class="ma-head">
       <div class="mylbt">
@@ -14,12 +14,13 @@
 
     <!-- 新品上市 -->
     <div class="ne-header">
-      <div class="font-15">新品上市</div>
+      <div class="font-15" @click="xinpin">新品上市</div>
       <div class="ne-content">
-        <div class="ne-head" v-for="item1 in items1" :key="item1.id">
-          <img class="ne-img" :src="item1.url" @click="cao" />
-          <div class="ne-font">Apple iPhone加大号充气气球</div>
-          <div class="ne-price">￥5388.88</div>
+        <div class="ne-head" v-for="(item1,index) of listxinpin" :key="index"  @click="cao">
+          <router-link :to="'/product/'+item1.id"></router-link>
+          <img class="ne-img" :src="'http://127.0.0.1:8081/'+item1.img_url" :data-id="item1.id" :data-price="item1.price" :data-title="item1.title" />
+          <div class="ne-font">{{item1.title}}</div>
+          <div class="ne-price">{{item1.price}}</div>
         </div>
       </div>
     </div>
@@ -28,7 +29,7 @@
     <div class="mo-header">
       <div class="font-15" @click="Renqi">人气推荐</div>
       <div class="mo-content" v-for="item2 in list1" :key="item2.id">
-        <img class="mo-img" :src="'http://127.0.0.1:8081/'+item2.img_url"  />
+        <img class="mo-img" :src="'http://127.0.0.1:8081/'+item2.img_url" />
         <div class="mo-div">
           <span class="mo-title">{{item2.title}}</span>
           <span class="mo-price">￥{{item2.price}}</span>
@@ -61,10 +62,14 @@ import SearchBar from "./../../components/searchbar/SearchBar.vue";
 export default {
   data() {
     return {
-       list:[],
-       pno:0,
-       list1:[],
-       pnoa:0,
+      list: [],
+      pno: 0,
+
+      list1: [],
+      pnoa: 0,
+
+      listxinpin: [],
+      pnox:0,
       value: "",
       items: [
         {
@@ -72,23 +77,6 @@ export default {
         },
         {
           url: "http://127.0.0.1:8081/lvbo/lvbo2.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
-        }
-      ],
-      items1: [
-        {
-          url: "http://127.0.0.1:8081/lvbo/lvbo1.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8081/lvbo/lvbo2.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
-        },
-        {
-          url: "http://127.0.0.1:8081/lvbo/lvbo1.jpg"
         },
         {
           url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
@@ -104,60 +92,82 @@ export default {
         {
           url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
         }
-      ],
+      ]
     };
   },
-  created(){
+  created() {
     //当前组件创建成功回调函数
     this.loadMore();
     this.Renqi();
+    this.xinpin();
   },
   components: {
     searchbar: SearchBar
   },
-  methods:{
-         cao(){
-           this.$router.push("/Product")
-       },
-        loadMore(){
-         console.log(111);
-      //功能一:当组件创建成功后获取第一页数据 
+  methods: {
+    cao(e) {
+      // this.$router.push("/Product");
+      console.log(e.target);
+    },
+    loadMore() {
+      // console.log(111);
+      //功能一:当组件创建成功后获取第一页数据
       //1:创建url地址
       var url = "cao";
       //1.1:将当前页码加一
       this.pno++;
-      var obj = {pno:this.pno}
+      var obj = { pno: this.pno };
       //2:发送ajax请求获取第一页数据
-      this.axios.get(url,{params:obj}).then(res=>{
-       //3:将数据保存data中
-       console.log(res.data.data);
-       //this.list = res.data.data;
-       //
-       var rows = this.list.concat(res.data.data);
-       //赋值
-       this.list = rows;
-      })
-     },
+      this.axios.get(url, { params: obj }).then(res => {
+        //3:将数据保存data中
+        // console.log(res.data.data);
+        //this.list = res.data.data;
+        //
+        var rows = this.list.concat(res.data.data);
+        //赋值
+        this.list = rows;
+      });
+    },
     //  人气推荐
-      Renqi(){
-         console.log(222);
-      //功能一:当组件创建成功后获取第一页数据 
+    Renqi() {
+      // console.log(222);
+      //功能一:当组件创建成功后获取第一页数据
       //1:创建url地址
       var url = "md";
       //1.1:将当前页码加一
       this.pnoa++;
-      var obj = {pnoa:this.pnoa}
+      var obj = { pnoa: this.pnoa };
       //2:发送ajax请求获取第一页数据
-      this.axios.get(url,{params:obj}).then(res=>{
-       //3:将数据保存data中
-       //console.log(res.data.data);
-       //this.list = res.data.data;
-       //
-       var rows = this.list1.concat(res.data.data);
-       //赋值
-       this.list1 = rows;
-      })
-     }
+      this.axios.get(url, { params: obj }).then(res => {
+        //3:将数据保存data中
+        //console.log(res.data.data);
+        //this.list = res.data.data;
+        //
+        var rows = this.list1.concat(res.data.data);
+        //赋值
+        this.list1 = rows;
+      });
+    },
+    //  新品上市
+    xinpin() {
+      console.log(33);
+      //功能一:当组件创建成功后获取第一页数据
+      //1:创建url地址
+      var url = "xinpin";
+      //1.1:将当前页码加一
+      this.pnox++;
+      var obj = { pnox: this.pnox };
+      //2:发送ajax请求获取第一页数据
+      this.axios.get(url, { params: obj }).then(res => {
+        //3:将数据保存data中
+        //console.log(res.data.data);
+        //this.list = res.data.data;
+        //
+        var rows = this.listxinpin.concat(res.data.data);
+        //赋值
+        this.listxinpin = rows;
+      });
+    }
   }
 };
 </script>
@@ -220,7 +230,6 @@ export default {
   height: 300px;
   display: flex;
   flex-wrap: wrap;
-  
 }
 .font-15 {
   text-align: center;
@@ -273,26 +282,26 @@ export default {
   height: 200px;
 }
 /* 为你推荐 */
-.re-img{
-  width:100px;
-  height:130px;
-  margin-top:19px !important;
+.re-img {
+  width: 100px;
+  height: 130px;
+  margin-top: 19px !important;
 }
 .re-head {
   display: flex;
-  justify-content:space-around;
-  flex-wrap:wrap;
-  width:100%;
-  border-radius:10px !important;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+  border-radius: 10px !important;
 }
 .re-content {
-  text-align:center;
+  text-align: center;
   box-sizing: border-box;
   height: 240px;
-  width:44%;
-  background:#fff;
-  border-radius:10px;
-  box-shadow:0px 0px 9px #ddd inset;
-  margin-top:1rem !important;
+  width: 44%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 9px #ddd inset;
+  margin-top: 1rem !important;
 }
 </style>

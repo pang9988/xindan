@@ -14,11 +14,11 @@
 
     <!-- 新品上市 -->
     <div class="ne-header">
-      <div class="font-15" @click="xinpin">新品上市</div>
+      <div class="font-15">新品上市</div>
       <div class="ne-content">
-        <div class="ne-head" v-for="(item1,index) of listxinpin" :key="index"  @click="cao">
-          <router-link :to="'/product/'+item1.id"></router-link>
-          <img class="ne-img" :src="'http://127.0.0.1:8081/'+item1.img_url" :data-id="item1.id" :data-price="item1.price" :data-title="item1.title" />
+        <div class="ne-head" v-for="(item1,index) of listxinpin" :key="index"  @click="cao(index)">
+          <router-link :to="'/commodit/'+item1.id"></router-link>
+          <img class="ne-img" :src="'http://127.0.0.1:8081/'+item1.img_url"  />
           <div class="ne-font">{{item1.title}}</div>
           <div class="ne-price">{{item1.price}}</div>
         </div>
@@ -92,7 +92,8 @@ export default {
         {
           url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
         }
-      ]
+      ],
+      rows:[]
     };
   },
   created() {
@@ -105,9 +106,12 @@ export default {
     searchbar: SearchBar
   },
   methods: {
-    cao(e) {
-      // this.$router.push("/Product");
-      console.log(e.target);
+    cao(index) {
+      let lid = this.list[index].id
+      this.$router.push("/Product:id"+lid);
+      console.log('/commodit/'+this.list[index].id);
+      console.log(this.listxinpin[index]);
+      // console.log(e.target);
     },
     loadMore() {
       // console.log(111);

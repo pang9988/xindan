@@ -3,9 +3,9 @@
     <!-- 手动轮播图片 -->
     <div class="co-showdou">
       <mt-swipe :auto="0" @change="handleChange">
-        <mt-swipe-item v-for="item of items" :key="item.id">
-          <!-- <img :src="item.url" class="showimg" /> -->
-           <img :src="'http://127.0.0.1:8081'+item.img_url" class="showimg" />
+        <mt-swipe-item v-for="(item,index) of items" :key="index ">
+          <img :src="item.url" class="showimg" />
+           <!-- <img :src="'http:// 127.0.0.1:8081'+item.img_url" class="showimg" /> -->
         </mt-swipe-item>
       </mt-swipe>
       <div class="aaa">{{i}}/{{uid}}</div>
@@ -74,6 +74,8 @@ export default {
       ]
     };
   },
+  // 02
+  // props:["id"],
 
   created() {
     this.uid = this.items.length;

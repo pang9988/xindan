@@ -42,7 +42,8 @@ export default {
   components: {
     commodit: Commodit,
     evaluat:Evaluat
-  }
+  },
+ 
 };
 </script>
 <style scoped>

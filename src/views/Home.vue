@@ -11,6 +11,9 @@
           <mt-tab-container-item id="classify">
           <classify></classify>
         </mt-tab-container-item>
+          <mt-tab-container-item id="explore">
+         
+        </mt-tab-container-item>
           <mt-tab-container-item id="gou">
           <cart></cart>
         </mt-tab-container-item>
@@ -35,6 +38,13 @@
             :focused="currentIndex[1].isSelect"
           ></tabbaricon>分类
         </mt-tab-item>
+        <!-- <mt-tab-item id="explore" @click.native="changeState(2)">
+          <tabbaricon
+            :normalImage="require('../assets/fen.png')"
+            :selectedImage="require('../assets/fens.png')"
+            :focused="currentIndex[2].isSelect"
+          ></tabbaricon>探索
+        </mt-tab-item> -->
 
         <mt-tab-item id="gou" @click.native="changeState(2)">
           <tabbaricon
@@ -77,7 +87,9 @@ export default {
         { isSelect: true },
         { isSelect: false },
         { isSelect: false },
-        { isSelect: false }
+        { isSelect: false },
+        // { isSelect: false },
+
       ]
     };
   },

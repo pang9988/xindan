@@ -21,7 +21,7 @@
           <div class="right-dian">手机</div>
           <div class="right-div">
             <div class="right-tu" v-for="(item,index) in mydata.shouji" :key="index">
-              <img class="right-img" :src="item.url" />
+              <img class="right-img" :src="item.url"  @click="tu"/>
               <div>{{item.title}}</div> 
             </div>
         
@@ -48,6 +48,29 @@
               <div>{{item3.title}}</div>
             </div>
           </div>
+          <div class="right-dian">内存卡</div>
+          <div class="right-div">
+            <div class="right-tu" v-for="(item3,index) of mydata.neikai" :key="index">
+              <img class="right-img" :src="item3.url"/>
+              <div>{{item3.title}}</div>
+            </div>
+          </div>
+          <div class="right-dian">内存卡</div>
+          <div class="right-div">
+            <div class="right-tu" v-for="(item3,index) of mydata.neikai" :key="index">
+              <img class="right-img" :src="item3.url"/>
+              <div>{{item3.title}}</div>
+            </div>
+          </div>
+          <div class="right-dian">内存卡</div>
+          <div class="right-div">
+            <div class="right-tu" v-for="(item3,index) of mydata.neikai" :key="index">
+              <img class="right-img" :src="item3.url"/>
+              <div>{{item3.title}}</div>
+            </div>
+          </div>
+
+          
           <!-- <div class="right-dian">电脑</div>
           <div class="right-div">
             <div class="right-tu">
@@ -120,6 +143,11 @@ export default {
       selected: "1",
       mydata:mydata,
     };
+  },
+  methods:{
+    tu(){
+      this.$router.push("/Tabulateall")
+    }
   }
 };
 </script>

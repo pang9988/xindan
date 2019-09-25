@@ -13,17 +13,17 @@
           <span @click="MeLv" class="me-delv">登录/注册</span>
         </div>
         <div class="me-tubian">
-          <p class="me-p1">
+          <p class="me-p1" @click="shou">
           
             <img src="./../../assets/number.png" />
           </p>
-          <p class="me-p2">
+          <p class="me-p2" @click="qq">
             <img src="./../../assets/qq.png" />
           </p>
-          <p class="me-p3">
+          <p class="me-p3" @click="wx">
             <img src="./../../assets/wx.png" />
           </p>
-          <p class="me-p4">
+          <p class="me-p4" @click="email">
             <img src="./../../assets/email.png" />
           </p>
         </div>
@@ -35,20 +35,20 @@
               <div style="margin-left:15px;">我的订单</div>
               <p style="margin-right:15px;">全部订单 <img class="imgrigh-tou" :src="require('../../assets/rightback.png')"></p>
           </div>
-          <div class="me-flow">
-          <div>
+          <div class="me-flow" >
+          <div @click="f">
             <img src="./../../assets/fukuan.png" />
             <p>待付款</p>
           </div>
-          <div>
+          <div @click="f">
             <img src="./../../assets/fahuo.png" />
             <p>待收货</p>
           </div>
-          <div>
+          <div @click="f">
             <img src="./../../assets/shouhuo.png" />
             <p>已出库</p>
           </div>
-          <div>
+          <div @click="f">
             <img src="./../../assets/order.png" />
             <p>全部订单</p>
           </div>
@@ -81,23 +81,99 @@
               </div>
           </div>
         </div>
+        <!-- <div style="z-index:500" >
+      <div class="me-jin fonttop">会员精选</div>
+    </div> -->
+      <div class="recommend">
+      <h3 class="font-15 me-jin fonttop" @click="loadMore">会员精选</h3>
+      <div class="re-head">
+        <div class="re-content" v-for="item4 in list" :key="item4.id">
+          <img class="re-img" :src="'http://127.0.0.1:8081/'+item4.img_url" />
+             <!-- <img src="../../assets/zouback.png"> -->
+          <div>{{item4.title}}</div>
+          <div style="margin-top:15px;color:red">￥{{item4.price}}</div>
+        </div>
+      </div>
+      <div style="height:80px;"></div>
     </div>
+    </div>
+    
   </div>
 </template>
 <script>
 export default {
   data(){
-    return{}
+    return{
+       list: [],
+       pno: 0,
+
+    }
+  },
+    created() {
+    //当前组件创建成功回调函数
+    this.loadMore();
   },
   methods:{
       MeLv(){
         this.$router.push("/Login")
-      }
+      },
+      shou(){
+        this.$router.push("/Login")
+      },
+       qq() {
+      this.$toast({
+        message: "未安装QQ",
+        position: "bottom"
+      });
+    },
+    wx() {
+      this.$toast({
+        message: "未安装微信",
+        position: "bottom"
+      });
+    },
+    email(){
+      this.$router.push("/email")
+    },
+    f(){
+      this.$router.push("/Indent")
+    },
+
+
+   loadMore() {
+      // console.log(111);
+      //功能一:当组件创建成功后获取第一页数据
+      //1:创建url地址
+      var url = "cao";
+      //1.1:将当前页码加一
+      this.pno++;
+      var obj = { pno: this.pno };
+      //2:发送ajax请求获取第一页数据
+      this.axios.get(url, { params: obj }).then(res => {
+        //3:将数据保存data中
+        // console.log(res.data.data);
+        //this.list = res.data.data;
+        //
+        var rows = this.list.concat(res.data.data);
+        //赋值
+        this.list = rows;
+      });
+    },
+
+
+
+
+
+
   }
 };
 </script>
 <style>
-*{margin:0;padding:0;}
+/* *{margin:0;padding:0;} */
+/* .me-head{
+  width:100%;
+  height:500px;
+} */
 .me-bg {
   position: relative;
 }
@@ -107,7 +183,7 @@ export default {
   background: #000;
 }
 .me-white {
-  height: 500px;
+  height: 420px;
   background: #f7f7f7;
 }
 .me-de {
@@ -203,6 +279,13 @@ export default {
 }
 .me-dian p,.me-site p{
   font-size:0.5rem;
+}
+.me-jin{
+  width:100%;
+  height:50px;
+  background:#ddd;
+  text-align: center;
+  line-height:50px;
 }
 
 </style>

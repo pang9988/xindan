@@ -75,8 +75,8 @@
         <div class="re-content" v-for="item4 in list" :key="item4.id">
           <img class="re-img" :src="'http://127.0.0.1:8081/'+item4.img_url" />
           <!-- <img src="../../assets/zouback.png"> -->
-          <div>{{item4.title}}</div>
-          <div style="margin-top:15px;color:red">￥{{item4.price}}</div>
+          <div class="ma-title">{{item4.title}}</div>
+          <div class="ma-price">￥{{item4.price}}</div>
         </div>
       </div>
       <div style="height:150px;"></div>
@@ -161,7 +161,7 @@ export default {
   width: 100%;
   height: 3rem;
   background: #fff;
-  position: relative;
+  position: fixed;
   text-align: center;
   line-height: 3rem;
   border-bottom: 1px solid #ddd;
@@ -239,7 +239,8 @@ export default {
   line-height: 15px;
 }
 .ca-btn {
-  width: 25px;
+  width: 30px;
+  height:30px;
   background: rgba(0, 0, 0, 0);
   border: 0;
   outline: 0;

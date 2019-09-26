@@ -1,6 +1,6 @@
 <template>
   <div id="ev">
-    <div class="ev-header">
+    <!-- <div class="ev-header">
       <p>用户评价(136)</p>
       <p>好评率99%</p>
     </div>
@@ -46,14 +46,14 @@
       </div>
       </div>
     </div>
-    <div style="margin-top:100px;"></div>
-  </div>
+    <div style="margin-top:100px;"></div>-->
+  </div> 
 </template>
 <script>
 export default {};
 </script>
 <style>
-.ev-header {
+/* .ev-header {
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -75,5 +75,5 @@ export default {};
 .ev-ev{
     padding:15px;
     border-bottom:1px solid #ddd;
-}
+} */
 </style>

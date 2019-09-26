@@ -21,7 +21,7 @@ import Evaluat from "./views/product/Evaluat.vue"
 import Tabulateall from "./views/tabulate/Tabulateall.vue"
 // 购物车
 import Cart from "./views/cart/Cart.vue"
-// 路由传参哈
+// 假假数据的测试moch
 import A from "./views/cart/A.vue"
 Vue.use(Router)
 
@@ -36,8 +36,8 @@ export default new Router({
     {path:'/Cart',name:'',component:Cart},
     {path:'/Tabulateall',name:'',component:Tabulateall},
     {path:'/Evaluat',name:'',component:Evaluat},
-    {path:'/Commodit/:id',component:Commodit,props:true},
-    {path:'/Product',name:'',component:Product},
+    {path:'/Commodit',component:Commodit,},
+    {path:'/Product/:id',name:'',component:Product,props:true},
     {path:'/Classify',name:'',component:Classify},
     {path:'/Grabble',name:'',component:Grabble},
     {path:'/Mainp',name:'',component:Mainp},

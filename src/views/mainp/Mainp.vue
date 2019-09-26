@@ -16,11 +16,10 @@
     <div class="ne-header">
       <div class="font-15">新品上市</div>
       <div class="ne-content">
-        <div class="ne-head" v-for="(item1,index) of listxinpin" :key="index"  @click="cao(index)">
-          <router-link :to="'/commodit/'+item1.id"></router-link>
+        <div class="ne-head" v-for="(item1,index) of listxinpin" :key="index"  @click="xps(index)">
           <img class="ne-img" :src="'http://127.0.0.1:8081/'+item1.img_url"  />
           <div class="ne-font">{{item1.title}}</div>
-          <div class="ne-price">{{item1.price}}</div>
+          <div class="ma-price">{{item1.price}}</div>
         </div>
       </div>
     </div>
@@ -32,7 +31,7 @@
         <img class="mo-img" :src="'http://127.0.0.1:8081/'+item2.img_url" />
         <div class="mo-div">
           <span class="mo-title">{{item2.title}}</span>
-          <span class="mo-price">￥{{item2.price}}</span>
+          <span class="ma-price">￥{{item2.price}}</span>
         </div>
       </div>
     </div>
@@ -49,8 +48,8 @@
       <div class="re-head">
         <div class="re-content" v-for="item4 in list" :key="item4.id">
           <img class="re-img" :src="'http://127.0.0.1:8081/'+item4.img_url" />
-          <div>{{item4.title}}</div>
-          <div style="margin-top:15px;color:red">￥{{item4.price}}</div>
+          <div class="ma-title">{{item4.title}}</div>
+          <div class="ma-price">￥{{item4.price}}</div>
         </div>
       </div>
       <div style="height:80px;"></div>
@@ -60,14 +59,16 @@
 <script>
 import SearchBar from "./../../components/searchbar/SearchBar.vue";
 export default {
+  // props:{"id":{type:String}},
   data() {
+  
     return {
       list: [],
       pno: 0,
-
       list1: [],
       pnoa: 0,
-
+    
+      // 0
       listxinpin: [],
       pnox:0,
       value: "",
@@ -84,13 +85,16 @@ export default {
       ],
       items3: [
         {
-          url: "http://127.0.0.1:8081/lvbo/lvbo1.jpg"
+          url: "http://127.0.0.1:8081/lvbo/01.jpg"
         },
         {
-          url: "http://127.0.0.1:8081/lvbo/lvbo2.jpg"
+          url: "http://127.0.0.1:8081/lvbo/02.jpg"
         },
         {
-          url: "http://127.0.0.1:8081/lvbo/lvbo3.jpg"
+          url: "http://127.0.0.1:8081/lvbo/03.jpg"
+        },
+        {
+          url: "http://127.0.0.1:8081/lvbo/04.jpg"
         }
       ],
       rows:[]
@@ -100,17 +104,23 @@ export default {
     //当前组件创建成功回调函数
     this.loadMore();
     this.Renqi();
-    this.xinpin();
+    this.xinpin1();
   },
   components: {
     searchbar: SearchBar
   },
   methods: {
-    cao(index) {
-      let lid = this.list[index].id
-      this.$router.push("/Product:id"+lid);
-      console.log('/commodit/'+this.list[index].id);
-      console.log(this.listxinpin[index]);
+    xps(index) {
+      let id = this.list[index].id;
+      console.log(id);
+      this.$router.push({path:`Product/${id}`})
+    
+
+
+
+      // this.$router.push("/Product:id"+lid);
+      // console.log('/commodit/'+this.list[index].id);
+      // console.log(this.listxinpin[index]);
       // console.log(e.target);
     },
     loadMore() {
@@ -130,46 +140,29 @@ export default {
         var rows = this.list.concat(res.data.data);
         //赋值
         this.list = rows;
+       
       });
     },
     //  人气推荐
     Renqi() {
-      // console.log(222);
-      //功能一:当组件创建成功后获取第一页数据
-      //1:创建url地址
       var url = "md";
-      //1.1:将当前页码加一
       this.pnoa++;
       var obj = { pnoa: this.pnoa };
-      //2:发送ajax请求获取第一页数据
       this.axios.get(url, { params: obj }).then(res => {
-        //3:将数据保存data中
-        //console.log(res.data.data);
-        //this.list = res.data.data;
-        //
         var rows = this.list1.concat(res.data.data);
-        //赋值
         this.list1 = rows;
       });
     },
     //  新品上市
-    xinpin() {
-      console.log(33);
-      //功能一:当组件创建成功后获取第一页数据
-      //1:创建url地址
+    xinpin1() {
+      // console.log(33);
       var url = "xinpin";
-      //1.1:将当前页码加一
       this.pnox++;
       var obj = { pnox: this.pnox };
-      //2:发送ajax请求获取第一页数据
       this.axios.get(url, { params: obj }).then(res => {
-        //3:将数据保存data中
-        //console.log(res.data.data);
-        //this.list = res.data.data;
-        //
         var rows = this.listxinpin.concat(res.data.data);
-        //赋值
         this.listxinpin = rows;
+         console.log(this.listxinpin);
       });
     }
   }
@@ -225,7 +218,7 @@ export default {
 /* 新品上市 */
 .ne-header {
   width: 100%;
-  height: 320px !important;
+  height: 410px !important;
   background: #fff;
 }
 .ne-content {

@@ -123,6 +123,7 @@ export default {
 <style>
 .ho-color .mint-tab-item-label {
   color: #666 !important;
+  width:100%
 }
 .tabbaricon{
   width:15px;

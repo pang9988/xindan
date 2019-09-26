@@ -10,7 +10,8 @@
       <div class="me-de">
         <div class="me-de1">
           <span class="me-rentou"></span>
-          <span @click="MeLv" class="me-delv">登录/注册</span>
+          <span @click="MeLv" class="me-delv">登录/注册</span> 
+          <!-- <span @click=""></span> -->
         </div>
         <div class="me-tubian">
           <p class="me-p1" @click="shou">
@@ -90,8 +91,8 @@
         <div class="re-content" v-for="item4 in list" :key="item4.id">
           <img class="re-img" :src="'http://127.0.0.1:8081/'+item4.img_url" />
              <!-- <img src="../../assets/zouback.png"> -->
-          <div>{{item4.title}}</div>
-          <div style="margin-top:15px;color:red">￥{{item4.price}}</div>
+          <div class="ma-title">{{item4.title}}</div>
+          <div class="ma-price">￥{{item4.price}}</div>
         </div>
       </div>
       <div style="height:80px;"></div>

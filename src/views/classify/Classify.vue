@@ -87,7 +87,7 @@
       
       </mt-tab-container-item>
       <mt-tab-container-item id="2">
-        <div class="right-cont">
+        <div class="right-content">
           <div class="right-dian">电脑整机</div>
           <div class="right-div">
             <div class="right-tu"  v-for="(item20,index) of mydata.diannaozhengji" :key="index">
@@ -114,7 +114,7 @@
         </div>
       </mt-tab-container-item>
       <mt-tab-container-item id="3">
-        <div class="right-cont">
+        <div class="right-content">
          <div class="right-dian">打印机装备</div>
           <div class="right-div">
             <div class="right-tu"  v-for="(item24,index) of mydata.dajinji" :key="index">
@@ -171,7 +171,7 @@ margin-bottom: 0
   top: 0;
 }
 .cl-head {
-  width: 25%;
+  width: 23%;
   background: #f7f7f7;
 }
 .left-fz .left-c {
@@ -199,7 +199,8 @@ margin-bottom: 0
   height: 800px;
   width: 100%;
   overflow:auto;
-  padding:12px;
+   padding-top: 12px;
+   padding-left: 12px
  
 }
 .right-div {

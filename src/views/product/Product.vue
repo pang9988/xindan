@@ -1,5 +1,6 @@
 <template>
   <div class="pr-header">
+    <div style="margin-bottom:50px;"  v-for="(item5,index) of p_list" :key="index">
     <div class="pr-head">
       <mt-navbar class="pr-jin" fixed v-model="selected ">
         <div style="font-size:25px" @click="$router.back(-1)">
@@ -24,8 +25,9 @@
             <!-- 手动轮播图片 -->
             <div class="co-showdou">
               <mt-swipe :auto="0" @change="handleChange">
-                <mt-swipe-item v-for="(item,index) of items" :key="index ">
-                  <img :src="item.url" class="showimg" />
+                <!-- <mt-swipe-item v-for="(item,index) of items" :key="index "> -->
+                <mt-swipe-item>
+                  <img style="width:100%;" :src="'http://127.0.0.1:8081/'+item5.img_lo" class="showimg" />
                   <!-- <img :src="'http:// 127.0.0.1:8081'+item.img_url" class="showimg" /> -->
                 </mt-swipe-item>
               </mt-swipe>
@@ -37,7 +39,7 @@
                   <div>
                     <div class="copadding">
                       <ul class="co-pp">
-                        <li class="reg">{{p_list.price}}</li>
+                        <li class="reg">{{item5.price}}</li>
                         <li>
                           <div style="text-align:center;">
                             <img style="width:20px;" src="./../../assets/desc.png" />
@@ -45,7 +47,7 @@
                           </div>
                         </li>
                       </ul>
-                      <h3>Bose QuietComfort35无线子机||-黑色</h3>
+                      <h3>{{item5.title}}</h3>
                       <img style="width:10px;" src="./../../assets/desc.png" />
                     </div>
                     <!-- 灰色线 -->
@@ -98,7 +100,7 @@
 
           <!-- 评论 -->
 
-          <!-- <div id="ev">
+          <div id="ev">
             <div class="ev-header">
               <p>用户评价(136)</p>
               <p>好评率99%</p>
@@ -145,9 +147,13 @@
                 </div>
               </div>
             </div>
-            <div style="margin-top:100px;"></div>
-          </div> -->
-
+          </div>
+            <!-- 详情图片 -->
+            <div class="product-header">
+              <div class="product-head">
+               <img style="width:100%;" :src="'http://127.0.0.1:8081/'+item5.img_big"/>
+              </div>
+            </div>
  
           <!-- <commodit></commodit>
           <evaluat></evaluat>-->
@@ -158,7 +164,7 @@
           <mt-cell v-for="n in 6" :title="'选项 ' + n" :key="n" />
         </mt-tab-container-item>
       </mt-tab-container>
-     
+      </div>
     </div>
         <div>
         <div class="co-bottom">
@@ -182,7 +188,7 @@ export default {
     return {
       selected: "1",
       s: "",
-      id: "",
+      uid: "",
       index: "",
       i: 1,
       p_list:[],
@@ -202,30 +208,40 @@ export default {
       ]
     };
   },
-
+  
     
   created() {
     this.uid = this.items.length;
-    // console.log(this.$route.params.lid);
-    // sessionStorage.setItem("lid", res.data.lid);
       this.loadData();
 
  
   },
+  props:['id'],
   methods: {
     handleChange(index) {
       //  判断同步数字
       console.log(index + 1);
       this.i < this.items.length ? this.i++ : (this.i = 1);
     },
-     loadData() {
-        var id = this.$route.query.id;
+     loadData(index) {
+
+        var id = this.id;
         var url = "detail";
         var obj={id:id}
         this.axios.get(url,{params: obj}).then(result => {
         var res = result.data.data;
         this.p_list = res;
-        console.log(this.p_list);
+        // console.log(this.p_list);
+        // var str=JSON.stringify(this.p_list[0].id);
+        // var str1=JSON.stringify(this.p_list[0].price);
+        //  console.log(parseInt(str))
+        //  console.log(parseFloat(str1));
+        // //  console.log(this.p_list[0])
+        //  var ii=this.p_list[0];
+        //  console.log(ii)
+        // //  this.p_list.concat()
+        
+      
       });
     }
   }
@@ -379,5 +395,8 @@ export default {
 .mai {
   background: #e51b24;
 } 
-
+.product-header{
+  width:100%;
+  height:500px;
+}
 </style>

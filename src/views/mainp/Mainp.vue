@@ -113,15 +113,8 @@ export default {
     xps(index) {
       let id = this.list[index].id;
       console.log(id);
-      this.$router.push({path:`Product/${id}`})
+      this.$router.push({path:`/Product/${id}`})
     
-
-
-
-      // this.$router.push("/Product:id"+lid);
-      // console.log('/commodit/'+this.list[index].id);
-      // console.log(this.listxinpin[index]);
-      // console.log(e.target);
     },
     loadMore() {
       // console.log(111);

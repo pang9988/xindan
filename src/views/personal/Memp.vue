@@ -70,7 +70,7 @@
           <div class="me-site">
               <div>
                   <img src="./../../assets/diwei.png">
-                  <p>收货地址</p>
+                  <p @click="shoudi">收货地址</p>
               </div>
               <div>
                   <img src="./../../assets/qian.png">
@@ -139,7 +139,9 @@ export default {
     f(){
       this.$router.push("/Indent")
     },
-
+    shoudi(){
+      this.$router.push("Take")
+    },
 
    loadMore() {
       // console.log(111);

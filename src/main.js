@@ -12,7 +12,11 @@ import'mint-ui/lib/style.css'
 //引入 mint-ui 组件库中所有的组件
 import MintUI from "mint-ui"
 
+// import Vue from 'vue';
+import Vant from 'vant';
+import 'vant/lib/index.css';
 
+Vue.use(Vant);
 //110注册 
 Vue.use(MintUI)
 

@@ -81,7 +81,7 @@
       </div>
       <div style="height:150px;"></div>
     </div>
-    <!-- 结算 -->
+    <!-- 结算 --> 
     <div class="ca-quanxuan1">
       <div class="yuan yuan1" @click="gouu">
         <div :class="{xin:uin}">

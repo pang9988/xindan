@@ -23,6 +23,8 @@ import Tabulateall from "./views/tabulate/Tabulateall.vue"
 import Cart from "./views/cart/Cart.vue"
 // 假假数据的测试moch
 import A from "./views/cart/A.vue"
+// 商品规格测试
+import B from "./views/cart/B.vue"
 //收货
 import Take from "./views/personal/Take.vue"
 // 新建地址
@@ -32,6 +34,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
 
+    {path:'/B',name:'',component:B},
     {path:'/A',name:'',component:A},
 
   

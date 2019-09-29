@@ -233,11 +233,13 @@ export default {
       var title=event.target.dataset.title;
       var price=event.target.dataset.price;
       var imgurl=event.currentTarget.dataset.imgurl;
+      // console.log(imgurl)
       // console.log(``)
       console.log(`${lid},${title},${price},${imgurl}`);
 
       var url="addcart";
-      var obj={lid:lid,title:title,price:price,imgurl:imgurl};
+      var obj={lid,title,price,imgurl};
+      console.log(obj)
       // 发送ajax请求获取
       this.axios.get(url,{params:obj}).then(res=>{
         console.log(res.data.code)

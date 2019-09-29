@@ -22,6 +22,7 @@
         <div>
           <!-- <img style="width:90px" src="./../../assets/01.jpg" /> -->
           <img style="width:90px" :src="'http://127.0.0.1:8081/'+itemn.imgurl" />
+          <!-- <img style="width:90px" src="http://127.0.0.1:8081/./img/xinpinsha_lo/21.jpg" /> -->
         </div>
         <div class="ca-wenzi">
           {{itemn.title}}

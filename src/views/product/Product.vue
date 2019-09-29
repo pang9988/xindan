@@ -179,8 +179,8 @@
             :data-id="item5.id" 
             :data-lid="item5.lid"
             :data-price="item5.price"
-            :data-imgurl="item5.img_url"
             :data-title="item5.title"
+            :data-imgUrl="item5.img_lo"
           >加入购物车</button>
           <button class="cojiaru mai">立即购买</button>
         </div>
@@ -227,26 +227,28 @@ export default {
   props: ["id"],
   methods: {
     // 购物车
-    addcart(e){
-      var id=e.target.dataset.id;
-      var lid=e.target.dataset.lid;
-      var title=e.target.dataset.title;
-      var price=e.target.dataset.price;
-      // var imgurl=e.target.dataset.img_big;
-      console.log(`${id},${title},${price}`);
+    addcart(event){
+      // var id=e.target.dataset.id;
+      var lid=event.target.dataset.lid;
+      var title=event.target.dataset.title;
+      var price=event.target.dataset.price;
+      var imgurl=event.currentTarget.dataset.imgurl;
+      // console.log(``)
+      console.log(`${lid},${title},${price},${imgurl}`);
 
       var url="addcart";
-      var obj={lid:lid,title:title,price:price,};
+      var obj={lid:lid,title:title,price:price,imgurl:imgurl};
       // 发送ajax请求获取
       this.axios.get(url,{params:obj}).then(res=>{
+        console.log(res.data.code)
         if(res.data.code==-1){
-          this.$messagebox("消息","请登录").then(res=>{
+          this.$messagebox("请登录").then(res=>{
             this.$router.push("/Login");
           });
         }else if(res.data.code==-2){
-          this.$messagebox("消息","添加失败");
+          this.$messagebox("添加失败");
         }else{
-          this.$messagebox("消息","添加成功")
+          this.$messagebox("添加成功,在购物车等亲")
         }
       })
     },
@@ -262,15 +264,6 @@ export default {
       this.axios.get(url, { params: obj }).then(result => {
         var res = result.data.data;
         this.p_list = res;
-        // console.log(this.p_list);
-        // var str=JSON.stringify(this.p_list[0].id);
-        // var str1=JSON.stringify(this.p_list[0].price);
-        //  console.log(parseInt(str))
-        //  console.log(parseFloat(str1));
-        // //  console.log(this.p_list[0])
-        //  var ii=this.p_list[0];
-        //  console.log(ii)
-        // //  this.p_list.concat()
       });
     }
   }

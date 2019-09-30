@@ -171,6 +171,7 @@
     <div>
       <div class="co-bottom">
         <div class="co-below">
+        
           <img class="imgbottom" :src="require('../../assets/customer.png')" />
           <img class="imgbottom" :src="require('../../assets/cart.png')" />
           <button
@@ -181,6 +182,7 @@
             :data-price="item5.price"
             :data-title="item5.title"
             :data-imgUrl="item5.img_lo"
+            :data-count="item5.count"
           >加入购物车</button>
           <button class="cojiaru mai">立即购买</button>
         </div>
@@ -190,6 +192,8 @@
   </div>
 </template>
 <script>
+
+
 //引入商品的组件
 // import Commodit from "./Commodit.vue";
 //引入评论
@@ -226,19 +230,27 @@ export default {
   },
   props: ["id"],
   methods: {
+    // // 点击的图标
+    // onClickIcon(){
+    //   Toast('点击图标');
+    // },
+    //  onClickButton() {
+    //   Toast('点击按钮')
+    // },
     // 购物车
     addcart(event){
       // var id=e.target.dataset.id;
       var lid=event.target.dataset.lid;
       var title=event.target.dataset.title;
       var price=event.target.dataset.price;
+      var count=event.currentTarget.dataset.count;
       var imgurl=event.currentTarget.dataset.imgurl;
       // console.log(imgurl)
       // console.log(``)
-      console.log(`${lid},${title},${price},${imgurl}`);
+      console.log(`${lid},${title},${price},${count},${imgurl}`);
 
       var url="addcart";
-      var obj={lid,title,price,imgurl};
+      var obj={lid,title,price,count,imgurl};
       console.log(obj)
       // 发送ajax请求获取
       this.axios.get(url,{params:obj}).then(res=>{

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import Vant from 'vant'
 // import axios from "axios"//
 
 // 导入mock 使用mock生效
@@ -13,7 +14,7 @@ import'mint-ui/lib/style.css'
 import MintUI from "mint-ui"
 
 // import Vue from 'vue';
-import Vant from 'vant';
+
 import 'vant/lib/index.css';
 
 Vue.use(Vant);

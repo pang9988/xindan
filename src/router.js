@@ -21,6 +21,7 @@ import Evaluat from "./views/product/Evaluat.vue"
 import Tabulateall from "./views/tabulate/Tabulateall.vue"
 // 购物车
 import Cart from "./views/cart/Cart.vue"
+import Order from "./views/cart/Order.vue"
 // 假假数据的测试moch
 import A from "./views/cart/A.vue"
 // 商品规格测试
@@ -41,6 +42,7 @@ export default new Router({
     {path:'/Takexin',name:'',component:Takexin},
     {path:'/Take',name:'',component:Take},
     {path:'/Indent',name:'',component:Indent},
+    {path:'/Order',name:'',component:Order},
     {path:'/Cart',name:'',component:Cart},
     {path:'/Tabulateall',name:'',component:Tabulateall},
     {path:'/Evaluat',name:'',component:Evaluat},

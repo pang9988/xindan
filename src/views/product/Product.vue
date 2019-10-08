@@ -27,7 +27,7 @@
                   <!-- <mt-swipe-item v-for="(item,index) of items" :key="index "> -->
                   <mt-swipe-item>
                     <img
-                      style="width:100%;"
+                      style="width:70%;transform: translate(21%,3%);"
                       :src="'http://127.0.0.1:8081/'+item5.img_lo"
                       class="showimg"
                     />
@@ -251,10 +251,10 @@ export default {
 
       var url="addcart";
       var obj={lid,title,price,count,imgurl};
-      console.log(obj)
+      // console.log(obj)
       // 发送ajax请求获取
       this.axios.get(url,{params:obj}).then(res=>{
-        console.log(res.data.code)
+        // console.log(res.data.code)
         if(res.data.code==-1){
           this.$messagebox("请登录").then(res=>{
             this.$router.push("/Login");
@@ -268,12 +268,23 @@ export default {
     },
     handleChange(index) {
       //  判断同步数字
-      console.log(index + 1);
+      // console.log(index + 1);
       this.i < this.items.length ? this.i++ : (this.i = 1);
     },
     loadData(index) {
       var id = this.id;
+      // console.log(id);
       var url = "detail";
+      var obj = { id: id };
+      this.axios.get(url, { params: obj }).then(result => {
+        var res = result.data.data;
+        this.p_list = res;
+      });
+    },
+    loadData(index) {
+      var id = this.id;
+      // console.log(id);
+      var url = "detail2";
       var obj = { id: id };
       this.axios.get(url, { params: obj }).then(result => {
         var res = result.data.data;

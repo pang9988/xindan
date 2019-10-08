@@ -112,7 +112,7 @@ export default {
   methods: {
     xps(index) {
       let id = this.list[index].id;
-      console.log(id);
+      // console.log(id);
       this.$router.push({path:`/Product/${id}`})
     
     },
@@ -155,7 +155,7 @@ export default {
       this.axios.get(url, { params: obj }).then(res => {
         var rows = this.listxinpin.concat(res.data.data);
         this.listxinpin = rows;
-         console.log(this.listxinpin);
+        //  console.log(this.listxinpin);
       });
     }
   }

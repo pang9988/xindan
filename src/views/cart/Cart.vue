@@ -10,56 +10,49 @@
     <div style="margin-top:50px;"></div>
     <div class="ca-quanxuan">
       <!-- <input class="inputyuan" type="radio"> -->
-      <div>
-        <!-- <van-checkbox v-model="checked1" checked-color="#f00">中国新蛋网</van-checkbox> -->
-      </div>
+      <div></div>
     </div>
-    <div v-for="(itemn,index) of cartlist" :key="index">
-      <div class="ca-libian">
-        <div>
-          <!-- <van-checkbox v-model="checked" :value="value1" checked-color="#f00"></van-checkbox> -->
-          <label>
-            <input type="checkbox" class="checkItem" @click="checkItem($event,index)" />
-          </label>
-        </div>
-        <div class="ca-tupian">
+    <div>
+      <div v-for="(itemn,index) of cartlist" :key="index">
+        <div class="ca-libian">
           <div>
-            <img style="width:90px" :src="'http://127.0.0.1:8081/'+itemn.imgurl" />
+            <label>
+              <input type="checkbox" v-model="itemn.ischecked" class="checkItem" @change="danxuan"/>
+            </label>
           </div>
-          <div class="ca-wenzi">
-            {{itemn.title}}
-            <div class="ca-price">
-              <span class="ca-qian">￥{{itemn.price}}</span>
-              <span class="ca-right">
-                <!-- <van-stepper v-model="value1"/> -->
-                <!-- <button class="ca-btn" @click="change(-1)">-</button>
-              <span class="ca-shuozi">{{n}}</span>
-                <button class="ca-btn" @click="change(1)">+</button>-->
-                <button class="ca-btn" @click="reduceCount(index)" :disabled="itemn.count===1">-</button>
-                <span class="ca-shuozi">{{itemn.count}}</span>
-                <button class="ca-btn" @click="addCount(index)">+</button>
-              </span>
+          <div class="ca-tupian">
+            <div>
+              <img style="width:90px" :src="'http://127.0.0.1:8081/'+itemn.imgurl" />
+            </div>
+            <div class="ca-wenzi">
+              {{itemn.title}}
+              <div class="ca-price">
+                <span class="ca-qian">￥{{itemn.price}}</span>
+                <span class="ca-right">
+                  <button class="ca-btn" @click="change(-1,index)">-</button>
+                  <span class="ca-shuozi">{{itemn.count}}</span>
+                  <button class="ca-btn" @click="change(+1,index)">+</button>
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- 结算 -->
-      <div class="ca-quanxuan1">
-        <div>
-          <!-- <van-checkbox v-model="checked1" checked-color="#f00"></van-checkbox> -->
-          <input id="checkAll" type="checkbox" class="checkAll" @click="checkAllOrNot($event)" />
-        </div>
-        <div class="ca-jiesuan">
-          <div class="ca-zi">全选</div>
-          <div v-if="isLogin==true">
-            合计
-            <span class="ca-qian cartprice">￥{{totalPrice}}</span>
-            <!--{{totalPrice}}--->
-            <button class="ca-quje">去结算</button>
+        <!-- 结算 -->
+        <div class="ca-quanxuan1">
+          <div>
+            <input id="checkAll" type="checkbox" @change="Numlist()" class="checkAll" v-model="selectedAll"/>
           </div>
-          <div v-else>
-            <button class="cartyin">移入收藏</button>
-            <button class="cartyin" @click="remove(index)">删除</button>
+          <div class="ca-jiesuan">
+            <div class="ca-zi">全选</div>
+            <div v-if="isLogin==true">
+              合计
+              <span class="ca-qian cartprice">￥{{total.toFixed(2)}}</span>
+              <button class="ca-quje" @click="order">去结算</button>
+            </div>
+            <div v-else>
+              <button class="cartyin">移入收藏</button>
+              <button class="cartyin" :data-i="index">删除</button>
+            </div>
           </div>
         </div>
       </div>
@@ -70,7 +63,6 @@
       <div class="re-head">
         <div class="re-content" v-for="item4 in list" :key="item4.id">
           <img class="re-img" :src="'http://127.0.0.1:8081/'+item4.img_url" />
-          <!-- <img src="../../assets/zouback.png"> -->
           <div class="ma-title">{{item4.title}}</div>
           <div class="ma-price">￥{{item4.price}}</div>
         </div>
@@ -83,8 +75,6 @@
 export default {
   data() {
     return {
-      // uin1: 0,
-      // uin: 0,
       isLogin: true,
       n: 1,
       list: [],
@@ -93,8 +83,10 @@ export default {
       checked1: true,
       cartlist: "",
       value1: "",
-      checkList: [], //选中的商品列表 用于计算总价
-      count:1,
+      count: "",
+      // selectAll: false ,
+      ischecked: false,
+      selectedAll:false
     };
   },
   created() {
@@ -105,139 +97,65 @@ export default {
   },
   // 计算属性
   computed: {
-    totalPrice: function() {
+    total() {
+      // 先总数为0
       var total = 0;
-      for (var i = 0; i < this.checkList.length; i++) {
-        var itemn = this.checkList[i];
-        total += itemn.price * itemn.count;
+      // 遍历所有商品
+      for (var p of this.cartlist) {
+        // 判断是否选中
+        if (p.ischecked) {
+          // 选中的哇就相乘
+          total += p.price * p.count;
+        }
       }
-      return total.toLocaleString();
+      // 把值返回
+      return total;
     }
   },
-
   methods: {
-    reduceCount: function(index) {
-      if (this.cartlist[index].count === 1) return;
-      this.cartlist[index].count--;
+    //
+    order(){
+      this.$router.push("/Order")
     },
-    /**
-     * 增加购买数量
-     * @param index
-     */
-    addCount: function(index) {
-      this.cartlist[index].count++;
+    //全选
+    Numlist() {
+      // 遍历所有的商品
+      for(var item of this.cartlist){
+        // 点击全选时 把值赋给单选的
+        item.ischecked=this.selectedAll;
+      }
     },
-    /**
-     * 移除商品
-     * @param index
-     */
-    remove: function(index) {
-      console.log("remove-index:" + index);
-      this.cartlist.splice(index, 1);
-
-      //获取商品序号
-      var id = index + 1;
-      //移除实际参与计算的商品
-      var $checkList = this.checkList;
-      for (var i = 0; i < $checkList.length; i++) {
-        var itemn = $checkList[i];
-        if (itemn.id == id) {
-          $checkList.splice(i, 1);
+    danxuan(){
+      var isAll;      //是否全选
+      // 遍历所有商品
+      for(var p of this.cartlist){  
+          //如果单选为true 
+        if(p.ischecked){ 
+          //那就为true 
+          isAll=true;    
+        }else{
+          isAll=false;
+          break;
         }
       }
-    },
-    /**
-     * 全选或全不选
-     * @param event
-     */
-    checkAllOrNot: function(event) {
-      if (event.target.checked) {
-        //全选
-        this.checkAll();
-        console.log("checkList：" + this.checkList);
-      } else {
-        // 全不选
-        console.log("全不选");
-        this.checkInItems("noCheckAll");
-        this.checkList.splice(0); //清空数组
+      if(isAll){  //isAll如果是true，全选按钮=true,否则全选按钮=false
+        this.selectedAll=true;
+      }else{
+        this.selectedAll=false;
       }
     },
-    /**
-     * 全选
-     */
-    checkAll: function() {
-      console.log("全选");
-      this.checkInItems("checkAll");
-      this.checkList = this.cartlist.concat(); //复制商品列表
-    },
-    /**
-     * 全选或全不选
-     * @param type checkAll：全选；其他：全不选
-     */
-    checkInItems: function(type) {
-      var items = document.querySelectorAll(".checkItem");
-      for (var i = 0; i < items.length; i++) {
-        var itemn = items[i];
-        if (type === "checkAll") {
-          itemn.checked = true;
-        } else {
-          itemn.checked = false;
-        }
+    change(n,i) {
+      this.cartlist[i].count += n;
+      if (this.cartlist[i].count == 0) {
+        this.cartlist.splice(i, 1);
       }
     },
-    /**
-     * 勾选或不勾选
-     */
-    checkItem: function(event, index) {
-      console.log("checkItem");
-      var element = event.target;
-      var $allCheck = document.querySelector(".checkAll");
-      if (element.checked) {
-        //勾选，加入已选择列表
-        this.checkList.push(this.cartlist[index]);
-        this.checkAllElement($allCheck);
-      } else {
-        //不勾选，从已选择列表中去除
-        this.checkList.splice(index, 1);
-        $allCheck.checked = false;
-      }
-    },
-    /**
-     * 勾选全选框
-     * @param element
-     */
-    checkAllElement: function(element) {
-      //如果所有的商品都已被勾选，则勾选全选框
-      if (this.checkList.length == this.cartlist.length) {
-        element.checked = true;
-      }
-    },
-
-    // 选中
-    // checkItem(event,index){
-    // // console.log(event,index)
-    // var element=event.target;
-    // var allCheck=document.querySelector(".checkAll");
-    // if(element.checked){
-    //   this.checkList.push(this.list[index]);
-    //   this.checkAllElement(allCheck);
-    // }else{
-    //   this.checkList.splice(index,1);
-    //   allCheck.checked=false;
-    // }
-
-    // },
-    // 减少数量
-    //  reduceCount(index){
-    //   if(this.cartlist[index].count===1) return;
-    //   this.cartlist[index].count--;
+    // del(e){
+    //  if(e.target.nodeName=="BUTTON"&&e.target.innerHTML=="删除"){
+    //    var i=e.target.dataset.i;
+    //    this.cartlist.splice(i,1);
+    //    }
     //  },
-    // //  增加数量
-    //  addCount(index){
-    //    this.cartlist[index].count++;
-    //  },
-    //  checkAllOrNot(){},
-
     // 编辑完成文字的
     login() {
       this.isLogin = true;
@@ -245,20 +163,6 @@ export default {
     logout() {
       this.isLogin = false;
     },
-    // 选中变红的
-    // gouu() {
-    //   this.uin == 1 ? (this.uin = 0) : (this.uin = 1);
-    // },
-    // // 全选
-    // gouu1() {
-    //   this.uin1 == 1 ? (this.uin1 = 0) : (this.uin1 = 1);
-    // },
-    // 数量加减
-    // change(i) {
-    //   this.n += i;
-    //   this.n < 1 && (this.n = 1);
-    // },
-    // 购物车的商品
 
     loadMorecart() {
       //功能:获取当前用户购物车列表

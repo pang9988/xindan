@@ -63,7 +63,8 @@ export default {
       //使用正则验证手机号
       // var p=/^1[3-9]\d{9}$/;
       //判断错误手机号提示
-      if (!/^1[3-9]\d{9}$/.test(phone)) {
+      // if (!/^1[3-9]\d{9}$/.test(phone)) {
+      if (!/^1$/.test(phone)) {
         this.$toast({
           message: "手机格式不正确",
           position: "bottom"
@@ -96,7 +97,8 @@ export default {
       //使用正则验证手机号
       // var p=/^1[3-9]\d{9}$/;
       //判断错误手机号提示
-      if (!/^1[3-9]\d{9}$/.test(phone)) {
+      // if (!/^1[3-9]\d{9}$/.test(phone)) {
+      if (!/^1$/.test(phone)) {
         this.$toast({
           message: "手机格式不正确",
           position: "bottom"

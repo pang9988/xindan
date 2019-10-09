@@ -167,9 +167,27 @@
           </mt-tab-container-item>
         </mt-tab-container>
       </div>
-    
-    <div>
-      <div class="co-bottom">
+
+      <div>
+        <div class="co-bottom">
+          <div class="co-below">
+            <img class="imgbottom" :src="require('../../assets/customer.png')" />
+          <img class="imgbottom" :src="require('../../assets/cart.png')" />
+          <button
+            class="cojiaru jia"
+            @click="addcart"
+            :data-id="item5.id" 
+            :data-lid="item5.lid"
+            :data-price="item5.price"
+            :data-title="item5.title"
+            :data-imgUrl="item5.img_lo"
+            :data-count="item5.count"
+          >加入购物车</button>
+            <button class="cojiaru mai">立即购买</button>
+
+          </div>
+        </div>
+        <!-- <div class="co-bottom">
         <div class="co-below">
         
           <img class="imgbottom" :src="require('../../assets/customer.png')" />
@@ -186,14 +204,12 @@
           >加入购物车</button>
           <button class="cojiaru mai">立即购买</button>
         </div>
+        </div>-->
       </div>
-    </div>
     </div>
   </div>
 </template>
 <script>
-
-
 //引入商品的组件
 // import Commodit from "./Commodit.vue";
 //引入评论
@@ -229,6 +245,7 @@ export default {
     this.loadData();
   },
   props: ["id"],
+
   methods: {
     // // 点击的图标
     // onClickIcon(){
@@ -238,33 +255,33 @@ export default {
     //   Toast('点击按钮')
     // },
     // 购物车
-    addcart(event){
+    addcart(event) {
       // var id=e.target.dataset.id;
-      var lid=event.target.dataset.lid;
-      var title=event.target.dataset.title;
-      var price=event.target.dataset.price;
-      var count=event.currentTarget.dataset.count;
-      var imgurl=event.currentTarget.dataset.imgurl;
+      var lid = event.target.dataset.lid;
+      var title = event.target.dataset.title;
+      var price = event.target.dataset.price;
+      var count = event.currentTarget.dataset.count;
+      var imgurl = event.currentTarget.dataset.imgurl;
       // console.log(imgurl)
       // console.log(``)
       console.log(`${lid},${title},${price},${count},${imgurl}`);
 
-      var url="addcart";
-      var obj={lid,title,price,count,imgurl};
+      var url = "addcart";
+      var obj = { lid, title, price, count, imgurl };
       // console.log(obj)
       // 发送ajax请求获取
-      this.axios.get(url,{params:obj}).then(res=>{
+      this.axios.get(url, { params: obj }).then(res => {
         // console.log(res.data.code)
-        if(res.data.code==-1){
-          this.$messagebox("请登录").then(res=>{
+        if (res.data.code == -1) {
+          this.$messagebox("请登录").then(res => {
             this.$router.push("/Login");
           });
-        }else if(res.data.code==-2){
+        } else if (res.data.code == -2) {
           this.$messagebox("添加失败");
-        }else{
-          this.$messagebox("添加成功,在购物车等亲")
+        } else {
+          this.$messagebox("添加成功,在购物车等亲");
         }
-      })
+      });
     },
     handleChange(index) {
       //  判断同步数字
@@ -286,6 +303,7 @@ export default {
       // console.log(id);
       var url = "detail2";
       var obj = { id: id };
+      console.log(obj);
       this.axios.get(url, { params: obj }).then(result => {
         var res = result.data.data;
         this.p_list = res;

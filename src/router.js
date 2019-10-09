@@ -28,6 +28,7 @@ import A from "./views/cart/A.vue"
 import B from "./views/cart/B.vue"
 //收货
 import Take from "./views/personal/Take.vue"
+import Take1 from "./views/personal/Take1.vue"
 // 新建地址
 import Takexin from "./views/personal/Takexin.vue"
 Vue.use(Router)
@@ -40,6 +41,7 @@ export default new Router({
 
   
     {path:'/Takexin',name:'',component:Takexin},
+    {path:'/Take1',name:'',component:Take1},
     {path:'/Take',name:'',component:Take},
     {path:'/Indent',name:'',component:Indent},
     {path:'/Order',name:'',component:Order},

@@ -2,7 +2,8 @@
   <div class="ta-top">
     <div class="ta-header">
       <div class="ta-head">
-        <img class="ta-fanhui" :src="require('../../assets/zouback.png')" />
+         <img @click="tahui" class="ta-fanhui" :src="require('../../assets/zouback.png')" />
+       
         <input class="ta-input" type="text" placeholder="超火的商品在这里" />
         <img class="ta-img" :src="require('../../assets/search.png')" />
         <!-- <img class="taspan-img" v-if="shi==false" @click="shi1" :src="require('../../assets/normal.png')" /> -->
@@ -116,6 +117,8 @@ export default {
   },
   // 方法
   methods: {
+    // 返回
+    tahui(){this.$router.push("/")},
        sort(n) {
       if (n == 2) {
         this.odd_even += 1;

@@ -13,7 +13,7 @@
       <table></table>
       <div style="margin-top:40px;"></div>
       <div class="or-topdi">
-        <div>
+        <div @click="xinjin">
           <span>007</span>
           <span>13888888888</span>
           <p style="margin-top:0.7rem;">广西省廉江市石城镇那良村</p>
@@ -122,7 +122,7 @@
       <div style="background:#ddd;height:10px;margin-bottom:50px;"></div>
       <!-- 底部 -->
       <div>
-        <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit" />
+        <van-submit-bar :price="3050" button-text="提交订单" />
       </div>
     </div>
   </div>
@@ -134,8 +134,13 @@ export default {
       checked: true
     };
   },
-  methods: {},
-  props: {}
+  methods: {
+    xinjin(){
+      this.$router.push("./Take")
+    }
+  },
+  props: {},
+
 };
 </script>
 <style>

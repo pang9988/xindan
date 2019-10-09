@@ -17,7 +17,8 @@
         <div class="ca-libian">
           <div>
             <label>
-              <input type="checkbox" v-model="itemn.ischecked" class="checkItem" @change="danxuan"/>
+              <!-- <input type="checkbox" v-model="itemn.cb" class="checkItem" @change="danxuan"/> -->
+              <input type="checkbox" v-model="itemn.cb" class="checkItem"/>
             </label>
           </div>
           <div class="ca-tupian">
@@ -29,6 +30,9 @@
               <div class="ca-price">
                 <span class="ca-qian">￥{{itemn.price}}</span>
                 <span class="ca-right">
+                  <!-- <button class="ca-btn" @click="change(-1)">-</button>
+                  <span class="ca-shuozi">{{itemn.count}}</span>
+                  <button class="ca-btn" @click="change(+1)">+</button> -->
                   <button class="ca-btn" @click="change(-1,index)">-</button>
                   <span class="ca-shuozi">{{itemn.count}}</span>
                   <button class="ca-btn" @click="change(+1,index)">+</button>
@@ -40,18 +44,19 @@
         <!-- 结算 -->
         <div class="ca-quanxuan1">
           <div>
-            <input id="checkAll" type="checkbox" @change="Numlist()" class="checkAll" v-model="selectedAll"/>
+            <input id="checkAll" type="checkbox" @change="selectAll" class="checkAll" v-model="selectedAll"/>
           </div>
           <div class="ca-jiesuan">
             <div class="ca-zi">全选</div>
             <div v-if="isLogin==true">
               合计
               <span class="ca-qian cartprice">￥{{total.toFixed(2)}}</span>
-              <button class="ca-quje" @click="order">去结算</button>
+              <!-- <button class="ca-quje" :disable="disabled"   @click="order">结算</button> -->
+              <button class="ca-quje" :class="[itemn.cb==true ?'submitOrder':'noSubmitOrder']"   @click="order">结算</button>
             </div>
             <div v-else>
               <button class="cartyin">移入收藏</button>
-              <button class="cartyin" :data-i="index">删除</button>
+              <button class="cartyin" @click="deleteItems">删除</button>
             </div>
           </div>
         </div>
@@ -84,8 +89,10 @@ export default {
       cartlist: "",
       value1: "",
       count: "",
+      disabled:true,
       // selectAll: false ,
-      ischecked: false,
+      cb:false,
+      // ischecked: false,
       selectedAll:false
     };
   },
@@ -103,7 +110,7 @@ export default {
       // 遍历所有商品
       for (var p of this.cartlist) {
         // 判断是否选中
-        if (p.ischecked) {
+        if (p.cb) {
           // 选中的哇就相乘
           total += p.price * p.count;
         }
@@ -117,45 +124,82 @@ export default {
     order(){
       this.$router.push("/Order")
     },
-    //全选
-    Numlist() {
-      // 遍历所有的商品
-      for(var item of this.cartlist){
-        // 点击全选时 把值赋给单选的
-        item.ischecked=this.selectedAll;
-      }
-    },
-    danxuan(){
-      var isAll;      //是否全选
-      // 遍历所有商品
-      for(var p of this.cartlist){  
-          //如果单选为true 
-        if(p.ischecked){ 
-          //那就为true 
-          isAll=true;    
-        }else{
-          isAll=false;
-          break;
+
+ deleteItems(){
+      //功能:删除用户删除中多个商品
+      //(1)显示确认对话框
+      this.$messagebox.confirm("是否删除指定数据").then(res=>{
+       
+       //(2)创建变量保存选中id值  id
+       var id = "";  //1,2,3
+       //(3)创建循环遍历数组中每个元素
+       for(var item of this.cartlist){
+        //(4)判断当前元素属性cb是否等于true
+        if(item.cb){
+         //(5)拼接id      2,3,4,
+         id+=item.id+",";
         }
+       }//for end
+       //(6)去除字符串中最后一个逗号
+       //id="2,3,4,"
+       id = id.slice(0,-1);
+      //(7)判断用户是否选中商品 请选择需要删除商品
+      if(id==""){
+        this.$toast("请选择需要删除商品");
+        return;
       }
-      if(isAll){  //isAll如果是true，全选按钮=true,否则全选按钮=false
-        this.selectedAll=true;
-      }else{
-        this.selectedAll=false;
+     
+      //(8)创建url 创建obj 发送ajax请求
+      var url = "delItems";
+      var obj = {id:id};
+      this.axios.get(url,{params:obj}).then(res=>{
+       //(9)获取服务器返回数据
+       //(10)判断删除多个商品是否成功
+       if(res.data.code==-1){
+         this.$toast("删除失败");
+       }else{
+         this.$toast("删除成功");
+         this.loadMorecart();
+       }
+       //(11)刷新操作 loadMore()
+      })
+      })
+    },
+ 
+   selectAll(event){
+      //功能:为全选按钮绑定事件 change
+      //当全选按钮状态为checked=true
+      //所有商品列表 cb=true
+      //当全选按钮状态为checked=false
+      //所有商品列表 cb=false
+      //(1)获取当前按钮状态 true
+      var cb = event.target.checked
+      //(2)创建循环遍历所有商品属性cb值与全选状态
+      //   一致
+      for(var item of this.cartlist){
+        item.cb = cb;
       }
     },
+
+
+
+
+
+
+
+
+
+
+ 
+    //数量减到0时自动
     change(n,i) {
       this.cartlist[i].count += n;
       if (this.cartlist[i].count == 0) {
-        this.cartlist.splice(i, 1);
+        // this.cartlist.splice(i, 1);
+        this.cartlist[i].count =1
       }
     },
-    // del(e){
-    //  if(e.target.nodeName=="BUTTON"&&e.target.innerHTML=="删除"){
-    //    var i=e.target.dataset.i;
-    //    this.cartlist.splice(i,1);
-    //    }
-    //  },
+  
     // 编辑完成文字的
     login() {
       this.isLogin = true;
@@ -182,7 +226,7 @@ export default {
           //添加一个新功能:为数据添加属性cb
           //3.1:创建循环遍历res.data.data中数据(顺序)
           var rows = res.data.data;
-          console.log(rows);
+          // console.log(rows);
           for (var item of rows) {
             //3.2:为其添加属性cb值false(顺序)
             item.cb = false;
@@ -367,5 +411,11 @@ export default {
 }
 .cartprice {
   margin-right: 0.8rem;
+}
+/* .submitOrder{
+  background:#ddd !important;
+} */
+.noSubmitOrder{
+  background:#f0f !important;
 }
 </style>

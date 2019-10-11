@@ -101,7 +101,21 @@ export default {
     classify:Classify,
     cart:Cart
   },
+  created(){
+    this.home();
+  },
   methods: {
+    // 
+   home(){
+     var home=window.sessionStorage.getItem("home");
+     var active=window.sessionStorage.getItem("active");
+     if(home && active){
+       this.currentIndex=JSON.parse(home);
+       this.active=active
+
+     }
+   },
+  
     changeState(n) {
       //函数功能:将当前参数下标
       //对应数组值修改true其它修改false
@@ -116,6 +130,9 @@ export default {
           this.currentIndex[i].isSelect = false;
         }
       }
+      var that=this;
+       window.sessionStorage.setItem("home",JSON.stringify(that.currentIndex));
+       window.sessionStorage.setItem("active",that.active);
     }
   }
 };

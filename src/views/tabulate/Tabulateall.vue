@@ -2,8 +2,8 @@
   <div class="ta-top">
     <div class="ta-header">
       <div class="ta-head">
-         <img @click="tahui" class="ta-fanhui" :src="require('../../assets/zouback.png')" />
-       
+        <img @click="tahui" class="ta-fanhui" :src="require('../../assets/zouback.png')" />
+
         <input class="ta-input" type="text" placeholder="超火的商品在这里" />
         <img class="ta-img" :src="require('../../assets/search.png')" />
         <!-- <img class="taspan-img" v-if="shi==false" @click="shi1" :src="require('../../assets/normal.png')" /> -->
@@ -28,8 +28,14 @@
           <li :class="{active:currentIndex[2].isSelect}" @click="selectActive(2)">
             价格
             <span style="width:20px;height:40px;">
-              <img class="sanjue" :src="require('../../assets/up_pressed.png')" />
-              <img class="sanjue" :src="require('../../assets/xianormal.png')" />
+              <img
+                class="sanjue"
+                :src="require(baixu=='jiang'?'../../assets/up_pressed.png':'../../assets/up_normal.png')"
+              />
+              <img
+                class="sanjue"
+                :src="require(baixu=='sheng'?'../../assets/down_pressed.png':'../../assets/xianormal.png')"
+              />
             </span>
           </li>
           <li class="aa">
@@ -39,16 +45,25 @@
         <van-popup v-model="show" position="right" :style="{ height: '100%',width: '80%' }">
           <div>
             <div>
-              <van-collapse v-model="activeNames" >
-                <van-collapse-item accordion title="品牌" name="1"><p class="danchu">M 小米</p></van-collapse-item>
-                <van-collapse-item accordion title="操作系统" name="2"><p class="danchu">Android</p></van-collapse-item>
-                <van-collapse-item accordion title="摄像头像素" name="3"><p class="danchu">810万以上</p></van-collapse-item>
-                <van-collapse-item accordion title="是否支持IF卡" name="4"><p class="danchu">不支持</p></van-collapse-item>
-                <van-collapse-item accordion title="网络制式" name="5"><p class="danchu">4G</p></van-collapse-item>
-                <van-collapse-item accordion title="SIM卡尺寸" name="6"><p class="danchu">小卡</p></van-collapse-item>
-            
-              
-            
+              <van-collapse v-model="activeNames">
+                <van-collapse-item accordion title="品牌" name="1">
+                  <p class="danchu">M 小米</p>
+                </van-collapse-item>
+                <van-collapse-item accordion title="操作系统" name="2">
+                  <p class="danchu">Android</p>
+                </van-collapse-item>
+                <van-collapse-item accordion title="摄像头像素" name="3">
+                  <p class="danchu">810万以上</p>
+                </van-collapse-item>
+                <van-collapse-item accordion title="是否支持IF卡" name="4">
+                  <p class="danchu">不支持</p>
+                </van-collapse-item>
+                <van-collapse-item accordion title="网络制式" name="5">
+                  <p class="danchu">4G</p>
+                </van-collapse-item>
+                <van-collapse-item accordion title="SIM卡尺寸" name="6">
+                  <p class="danchu">小卡</p>
+                </van-collapse-item>
               </van-collapse>
             </div>
           </div>
@@ -90,13 +105,14 @@
 export default {
   data() {
     return {
-       // 价格的选中
+      // 价格的选中
+      baixu: null,
       activeSelect: [false, false],
       list: [],
       pnopro: 0,
       pspro: 0,
       shi: false,
-     
+
       // 点那那变色
       currentIndex: [
         { isSelect: true },
@@ -104,13 +120,11 @@ export default {
         { isSelect: false }
       ],
       show: false,
-      activeNames: ["1","2","3","4","5","6"],
-       // 单数 上 复数 下
-      odd_even: 1,
-      nowIdex: 0
+      activeNames: ["1", "2", "3", "4", "5", "6"]
+      // 单数 上 复数 下
     };
   },
-  
+
   // 刷新页面后获取
   created() {
     this.loadMore();
@@ -118,107 +132,43 @@ export default {
   // 方法
   methods: {
     // 返回
-    tahui(){this.$router.push("/")},
-       sort(n) {
-      if (n == 2) {
-        this.odd_even += 1;
-        if (this.odd_even % 2 == 0) {
-          this.activeSelect[0] = true;
-          this.activeSelect[1] = false;
-          if (n == 2) {
-            this.product_list = this.orderingRule(this.list, "price", true);
-          }
-        } else {
-          this.activeSelect[0] = false;
-          this.activeSelect[1] = true;
-          if (n == 2) {
-            this.product_list = this.orderingRule(this.list, "price", false);
-          }
-        }
-      } else {
-        this.activeSelect[0] = false;
-        this.activeSelect[1] = false;
-      }
-      if (n == 0) {
-        this.product_list = this.list;
-      }
-      if (n == 1) {
-        this.product_list = this.orderingRule(this.list, "shelf_time", false);
-      }
-      if (n == 3) {
-        this.product_list = this.orderingRule(this.list, "sales_volume", false);
-      }
-      if (n == 4) {
-        this.product_list = this.orderingRule(this.list, "read_num", true);
-      }
-    },
-     // 切换排序方式
-    selectActive(n) {
-      this.nowIdex = n;
-      this.sort(n);
-      for (var i = 0; this.currentIndex.length; i++) {
-        if (n == i) {
-          this.currentIndex[i].isSelect = true;
-        } else {
-          this.currentIndex[i].isSelect = false;
-        }
-        if (i == 4) return;
-      }
-    },
-    // arr:要排序的数组 name:按什么排序 order:是否逆序(true降序,false升序)默认升序
-    orderingRule(arr, name, order) {
-      var arr_list = [];
-      var newArr = [];
-      // 不改变list保存的数组,另起一个数组操作
-      var Arr = [];
-      for (let i = 0; i < arr.length; i++) {
-        Arr.push(arr[i]);
-        if (arr[i][name] == 0) {
-          arr_list.push(arr[i]);
-        } else {
-          newArr.push(arr[i][name]);
-        }
-      }
-      newArr = newArr.sort(function(a, b) {
-        // 升序(小到大)
-        return a - b;
-      });
-      // console.log(Arr)
-      for (var i = 0; i < newArr.length; i++) {
-        for (var j = 0; j < Arr.length; j++) {
-          if (newArr[i] == Arr[j][name]) {
-            if (order) {
-              arr_list.unshift(Arr[j]);
-              // 相同的删除,下次不会再有相同的
-              Arr.splice(j, 1);
-              continue;
-            } else {
-              arr_list.push(Arr[j]);
-              Arr.splice(j, 1);
-              continue;
-            }
-          }
-        }
-      }
-      // console.log(arr_list.length);
-      return arr_list;
+    tahui() {
+      this.$router.push("/");
     },
 
     // 弹出
     showPopup() {
       this.show = true;
     },
+    priceOrder(url){
+          this.pnopro++;
+          var obj = { pnopro: this.pnopro };
+          this.axios.get(url, { params: obj }).then(res => {
+            this.list = res.data.data;
+          });
+    },
     // 点那那变色
-    // selectActive(n) {
-    //   this.sort(n);
-    //   for (var i = 0; i < this.currentIndex.length; i++) {
-    //     if (n == i) {
-    //       this.currentIndex[i].isSelect = true;
-    //     } else {
-    //       this.currentIndex[i].isSelect = false;
-    //     }
-    //   }
-    // },
+    selectActive(n) {
+      if (n == 2) {
+        if (!this.baixu || this.baixu == "sheng") {
+          this.baixu = "jiang";
+          this.priceOrder("prolist1");
+        } else if (this.baixu == "jiang") {
+          this.priceOrder("prolist2");
+          this.baixu = "sheng";
+        }
+      } else {
+        this.baixu = null;
+      }
+
+      for (var i = 0; i < this.currentIndex.length; i++) {
+        if (n == i) {
+          this.currentIndex[i].isSelect = true;
+        } else {
+          this.currentIndex[i].isSelect = false;
+        }
+      }
+    },
     loadMore() {
       // console.log(231);
       //创建url地址
@@ -230,19 +180,8 @@ export default {
       this.axios.get(url, { params: obj }).then(res => {
         //将数据保存在data中
         var rows = this.list.concat(res.data.data);
-        this.product_list = rows;
-        this.sort(this.nowIdex);
         //赋值
         this.list = rows;
-        //    不会搞
-        // this.loading = true;
-        // setTimeout(() => {
-        //   let last = this.list[this.list.length - 1];
-        //   for (let i = 10; i <= 10; i++) {
-        //     this.list.push(last + i);
-        //   }
-        //   this.loading = false;
-        // }, 9500);
       });
     },
     // 价格的排序
@@ -258,7 +197,7 @@ export default {
     tiaoliao(index) {
       let id = this.list[index].id;
       console.log(id);
-      this.$router.push({path:`/Product/${id}`})
+      this.$router.push({ path: `/Product/${id}` });
     }
   }
 };
@@ -360,10 +299,9 @@ li {
   width: 30%;
   height: 30px;
   border-radius: 5px;
-  background:#ddd;
-  text-align:center;
-  line-height:30px;
-  color:#000
-
+  background: #ddd;
+  text-align: center;
+  line-height: 30px;
+  color: #000;
 }
 </style>

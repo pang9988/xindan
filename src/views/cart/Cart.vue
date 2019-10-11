@@ -52,7 +52,9 @@
               合计
               <span class="ca-qian cartprice">￥{{total.toFixed(2)}}</span>
               <!-- <button class="ca-quje" :disable="disabled"   @click="order">结算</button> -->
-              <button class="ca-quje" :class="[itemn.cb==true ?'submitOrder':'noSubmitOrder']"   @click="order">结算</button>
+              <button class="ca-quje" :class="[itemn.cb==true ?'submitOrder':'noSubmitOrder']" 
+                
+                 @click="order">结算</button>
             </div>
             <div v-else>
               <button class="cartyin">移入收藏</button>
@@ -122,7 +124,7 @@ export default {
   methods: {
     //
     order(){
-      this.$router.push("/Order")
+      this.$router.push("/Order");
     },
 
  deleteItems(){
@@ -194,6 +196,14 @@ export default {
     //数量减到0时自动
     change(n,i) {
       this.cartlist[i].count += n;
+       
+    //  var url = "count";
+    //   this.pno++;
+    //   var obj = { pno: this.pno };
+    //   this.axios.get(url, { params: obj }).then(res => {
+    //     var rows = this.list.concat(res.data.data);
+    //     this.list = rows;
+    //   });
       if (this.cartlist[i].count == 0) {
         // this.cartlist.splice(i, 1);
         this.cartlist[i].count =1

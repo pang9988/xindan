@@ -7,15 +7,14 @@
         <div class="me-white"></div>
       </div>
       <!-- 登录注册 -->
-      <div class="me-de">
+      <div class="me-de" v-if="delvtop==true">
         <div class="me-de1">
           <span class="me-rentou"></span>
-          <span @click="MeLv" class="me-delv">登录/注册</span> 
+          <span @click="MeLv" class="me-delv">登录/注册</span>
           <!-- <span @click=""></span> -->
         </div>
         <div class="me-tubian">
           <p class="me-p1" @click="shou">
-          
             <img src="./../../assets/number.png" />
           </p>
           <p class="me-p2" @click="qq">
@@ -28,15 +27,35 @@
             <img src="./../../assets/email.png" />
           </p>
         </div>
-
       </div>
+      <div
+        v-else
+        class="me-dexiao"
+        style="width:90%;height:100px;border-radius: 5px;background: #fff;position: absolute;top: 60px;left: 5%;z-index:1;"
+      >
+        <div class="chenggong">
+          <span class="me-rentou"></span>
+          <span class="me-delv" style="font-size:1rem">{{uname}}</span>
+          <span class="me-duizhu">
+            <img
+              style="width:30px;margin-right:30px;margin-top:20px;"
+              @click="dcName"
+              :src="require('../../assets/tuichufffpx.png')"
+            />
+          </span>
+        </div>
+      </div>
+
       <!-- 我的订单 -->
-       <div class="me-dian">
-          <div class="me-divwo">
-              <div style="margin-left:15px;">我的订单</div>
-              <p style="margin-right:15px;">全部订单 <img class="imgrigh-tou" :src="require('../../assets/rightback.png')"></p>
-          </div>
-          <div class="me-flow" >
+      <div class="me-dian">
+        <div class="me-divwo">
+          <div style="margin-left:15px;">我的订单</div>
+          <p style="margin-right:15px;">
+            全部订单
+            <img class="imgrigh-tou" :src="require('../../assets/rightback.png')" />
+          </p>
+        </div>
+        <div class="me-flow">
           <div @click="f">
             <img src="./../../assets/fukuan.png" />
             <p>待付款</p>
@@ -62,66 +81,102 @@
             <p>退款/售后</p>
           </div>
         </div>
+      </div>
+      <div class="me-serve">
+        <div class="me-myfuwu">
+          <div style="font-size:1rem;">我的服务</div>
         </div>
-        <div class="me-serve">
-          <div class="me-myfuwu">
-              <div style="font-size:1rem;">我的服务</div>
+        <div class="me-site">
+          <div>
+            <img src="./../../assets/diwei.png" />
+            <p @click="shoudi">收货地址</p>
           </div>
-          <div class="me-site">
-              <div>
-                  <img src="./../../assets/diwei.png">
-                  <p @click="shoudi">收货地址</p>
-              </div>
-              <div>
-                  <img src="./../../assets/qian.png">
-                  <p>积分中心</p>
-              </div>
-              <div>
-                  <img src="./../../assets/customer.png">
-                  <p>帮助与客服</p>
-              </div>
+          <div>
+            <img src="./../../assets/qian.png" />
+            <p>积分中心</p>
           </div>
-        </div>
-        <!-- <div style="z-index:500" >
-      <div class="me-jin fonttop">会员精选</div>
-    </div> -->
-      <div class="recommend">
-      <h3 class="font-15 me-jin fonttop" @click="loadMore">会员精选</h3>
-      <div class="re-head">
-        <div class="re-content" v-for="item4 in list" :key="item4.id">
-          <img class="re-img" :src="'http://127.0.0.1:8081/'+item4.img_url" />
-             <!-- <img src="../../assets/zouback.png"> -->
-          <div class="ma-title">{{item4.title}}</div>
-          <div class="ma-price">￥{{item4.price}}</div>
+          <div>
+            <img src="./../../assets/customer.png" />
+            <p>帮助与客服</p>
+          </div>
         </div>
       </div>
-      <div style="height:80px;"></div>
+      <!-- <div style="z-index:500" >
+      <div class="me-jin fonttop">会员精选</div>
+      </div>-->
+      <div class="recommend">
+        <h3 class="font-15 me-jin fonttop" @click="loadMore">会员精选</h3>
+        <div class="re-head">
+          <div class="re-content" v-for="item4 in list" :key="item4.id">
+            <img class="re-img" :src="'http://127.0.0.1:8081/'+item4.img_url" />
+            <!-- <img src="../../assets/zouback.png"> -->
+            <div class="ma-title">{{item4.title}}</div>
+            <div class="ma-price">￥{{item4.price}}</div>
+          </div>
+        </div>
+        <div style="height:80px;"></div>
+      </div>
     </div>
-    </div>
-    
   </div>
 </template>
 <script>
 export default {
-  data(){
-    return{
-       list: [],
-       pno: 0,
-
-    }
+  data() {
+    return {
+      list: [],
+      pno: 0,
+      delvtop: false,
+      uname:''
+    };
   },
-    created() {
+  created() {
     //当前组件创建成功回调函数
     this.loadMore();
+    this.loadm();
   },
-  methods:{
-      MeLv(){
-        this.$router.push("/Login")
-      },
-      shou(){
-        this.$router.push("/Login")
-      },
-       qq() {
+  methods: {
+    // 
+    loadm(){
+      var url="log";
+      this.axios.get(url).then(res=>{
+        console.log(res.data.data[0].imgn)
+       if(res.data.code==-1){
+         this.$toast("请登录");
+            this.delvtop=true
+       }else{
+        this.uname=res.data.data[0].uname
+       }
+      })
+
+    },
+    dcName() {
+      // 创建接口
+      var url = "LoginA";
+      // 创建用于退出登录的参数，有值即可
+      var out = "1";
+      var obj = { out: out };
+      this.axios.get(url, { params: obj }).then(res => {
+        console.log(res.data.code);
+        if (res.data.code == -1) {
+             this.delvtop=false;
+          // 提示用户登录
+          this.$toast("请登录");
+          
+          //跳转值登录页面
+          this.$router.push("/Login"); 
+          
+        }else{
+          this.delvtop=true;
+        }
+      });
+    },
+    MeLv() {
+      this.$router.push("/Login");
+    },
+    shou() {
+      this.$router.push("/Login");
+    },
+    qq() {
       this.$toast({
         message: "未安装QQ",
         position: "bottom"
@@ -133,17 +188,17 @@ export default {
         position: "bottom"
       });
     },
-    email(){
-      this.$router.push("/email")
+    email() {
+      this.$router.push("/email");
     },
-    f(){
-      this.$router.push("/Indent")
+    f() {
+      this.$router.push("/Indent");
     },
-    shoudi(){
-      this.$router.push("Take")
+    shoudi() {
+      this.$router.push("Take");
     },
 
-   loadMore() {
+    loadMore() {
       // console.log(111);
       //功能一:当组件创建成功后获取第一页数据
       //1:创建url地址
@@ -161,13 +216,7 @@ export default {
         //赋值
         this.list = rows;
       });
-    },
-
-
-
-
-
-
+    }
   }
 };
 </script>
@@ -202,14 +251,14 @@ export default {
 .me-de1 {
   display: flex;
 }
-.me-rentou {
+/* .me-rentou {
   width: 50px;
   height: 50px;
   background: url(./../../assets/renlogin.png);
   background-size: 50px;
   margin-left: 12px;
   margin-top: 12px;
-}
+} */
 .me-delv {
   margin-top: 29px;
   margin-left: 15px;
@@ -226,69 +275,76 @@ export default {
 .me-p1 {
   margin-left: 20px;
 }
-.me-dian{
-    margin-top:19px;
-    width:100%;
-    height:130px;
-    background:#fff;
-    position:absolute;
-    top:190px;
-    left:0px;
-    z-index:1;
+.me-dian {
+  margin-top: 19px;
+  width: 100%;
+  height: 130px;
+  background: #fff;
+  position: absolute;
+  top: 190px;
+  left: 0px;
+  z-index: 1;
 }
-.me-dian div img{
-    width:25px;
-    height:25px;
+.me-dian div img {
+  width: 25px;
+  height: 25px;
 }
-.me-flow{
-    display:flex;
-    justify-content:space-around;
-    align-items: center;
-    margin-top:30px;
+.me-flow {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 30px;
 }
-.me-divwo{
-  width:100%;
-  height:30px;
-  display:flex;
+.me-divwo {
+  width: 100%;
+  height: 30px;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-   }
-.me-flow div{text-align: center;}
-.me-serve{
-     margin-top:19px;
-    width:100%;
-    height:130px;
-    background:#fff;
-    position:absolute;
-    top:331px;
-    left:0px;
-    z-index:1;
 }
-.me-myfuwu{
-    margin:15px 0 0 15px;
-    font-size:1.3rem;
-    }
-.me-site div img{
-    width:40px;
-    height:40px;
-}
-.me-site{
-    display:flex;
-    justify-content:space-around;
-    margin-top:20px;
-}
-.me-site div{
-    text-align:center;
-}
-.me-dian p,.me-site p{
-  font-size:0.5rem;
-}
-.me-jin{
-  width:100%;
-  height:50px;
-  background:#ddd;
+.me-flow div {
   text-align: center;
-  line-height:50px;
 }
-
+.me-serve {
+  margin-top: 19px;
+  width: 100%;
+  height: 130px;
+  background: #fff;
+  position: absolute;
+  top: 331px;
+  left: 0px;
+  z-index: 1;
+}
+.me-myfuwu {
+  margin: 15px 0 0 15px;
+  font-size: 1.3rem;
+}
+.me-site div img {
+  width: 40px;
+  height: 40px;
+}
+.me-site {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.me-site div {
+  text-align: center;
+}
+.me-dian p,
+.me-site p {
+  font-size: 0.5rem;
+}
+.me-jin {
+  width: 100%;
+  height: 50px;
+  background: #ddd;
+  text-align: center;
+  line-height: 50px;
+}
+.chenggong {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 </style>

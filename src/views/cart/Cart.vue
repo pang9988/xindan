@@ -226,10 +226,10 @@ export default {
       this.axios.get(url).then(res => {
         if (res.data.code == -1) {
           //4:如果服务器返回-1 请登录
-          this.$messagebox("消息", "请登录").then(res => {
-            //回调函数（用户点击确认按钮后调用函数）
-            this.$router.push("/Login");
-          });
+          // this.$messagebox("消息", "请登录").then(res => {
+          //   //回调函数（用户点击确认按钮后调用函数）
+          //   this.$router.push("/Login");
+          // });
         } else {
           //3:获取服务器返回数据
           // this.list = res.data.data;

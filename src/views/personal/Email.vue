@@ -57,7 +57,7 @@ export default {
           this.$messagebox("消息", "用户名或密码有误");
         } else {
            
-           this.$router.push("/Home");
+           this.$router.push("/");
         
           
         }

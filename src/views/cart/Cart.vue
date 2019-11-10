@@ -8,16 +8,16 @@
     </div>
     <table></table>
     <div style="margin-top:50px;"></div>
-    <div class="ca-quanxuan">
-      <!-- <input class="inputyuan" type="radio"> -->
+    <!-- <div class="ca-quanxuan">
+      <input class="inputyuan" type="radio">
       <div></div>
-    </div>
+    </div> -->
     <div>
+    
       <div v-for="(itemn,index) of cartlist" :key="index">
         <div class="ca-libian">
           <div>
             <label>
-              <!-- <input type="checkbox" v-model="itemn.cb" class="checkItem" @change="danxuan"/> -->
               <input type="checkbox" v-model="itemn.cb" class="checkItem"/>
             </label>
           </div>
@@ -30,9 +30,6 @@
               <div class="ca-price">
                 <span class="ca-qian">￥{{itemn.price}}</span>
                 <span class="ca-right">
-                  <!-- <button class="ca-btn" @click="change(-1)">-</button>
-                  <span class="ca-shuozi">{{itemn.count}}</span>
-                  <button class="ca-btn" @click="change(+1)">+</button> -->
                   <button class="ca-btn" @click="change(-1,index)">-</button>
                   <span class="ca-shuozi">{{itemn.count}}</span>
                   <button class="ca-btn" @click="change(+1,index)">+</button>
@@ -41,10 +38,12 @@
             </div>
           </div>
         </div>
+       
         <!-- 结算 -->
+        <div >
         <div class="ca-quanxuan1">
           <div>
-            <input id="checkAll" type="checkbox" @change="selectAll" class="checkAll" v-model="selectedAll"/>
+            <input id="checkAll" type="checkbox" @change="selectAll" class="checkAll"  v-model="selectedAll"/>
           </div>
           <div class="ca-jiesuan">
             <div class="ca-zi">全选</div>
@@ -63,6 +62,11 @@
           </div>
         </div>
       </div>
+      </div>
+       <!-- 空白的什么也没有 -->
+        <div v-show="goumu==true">
+          <img style="width:100%;height:200px;" src="../../assets/gouwuche2.svg" alt="">
+        </div>
     </div>
     <!-- 为你推荐 -->
     <div class="recommend">
@@ -95,7 +99,10 @@ export default {
       // selectAll: false ,
       cb:false,
       // ischecked: false,
-      selectedAll:false
+      selectedAll:false,
+      goumu:true,
+     
+     
     };
   },
   created() {
@@ -103,6 +110,12 @@ export default {
     this.loadMorecart();
     // 购物车下面的商品
     this.loadMore();
+
+    
+  },
+  updated(){
+    this.itemoo();
+    
   },
   // 计算属性
   computed: {
@@ -122,6 +135,13 @@ export default {
     }
   },
   methods: {
+    itemoo(){
+      if(this.cartlist==""){
+        this.goumu=true;
+      }else{
+        this.goumu=false;
+      }
+    },
     //
     order(){
       this.$router.push("/Order");
@@ -135,6 +155,8 @@ export default {
        //(2)创建变量保存选中id值  id
        var id = "";  //1,2,3
        //(3)创建循环遍历数组中每个元素
+        
+      //  console.log( this.cartlist)
        for(var item of this.cartlist){
         //(4)判断当前元素属性cb是否等于true
         if(item.cb){
@@ -183,16 +205,6 @@ export default {
       }
     },
 
-
-
-
-
-
-
-
-
-
- 
     //数量减到0时自动
     change(n,i) {
       this.cartlist[i].count += n;
@@ -231,6 +243,7 @@ export default {
           //   this.$router.push("/Login");
           // });
         } else {
+          // console.log(res.data.code==1)
           //3:获取服务器返回数据
           // this.list = res.data.data;
           //添加一个新功能:为数据添加属性cb

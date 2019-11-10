@@ -9,8 +9,9 @@
       <!-- 登录注册 -->
       <div class="me-de" v-if="delvtop==true">
         <div class="me-de1">
-          <span class="me-rentou"></span>
-          <span @click="MeLv" class="me-delv">登录/注册</span>
+          <!-- <span class="me-rentou"></span> -->
+         <span><img style=" width: 50px;margin-left:12px;margin-top: 12px;" src='../../assets/renlogin.png' ></span> 
+       <span  class="me-delv">   <span @click="MeLv">登录</span><span>/注册</span></span>
           <!-- <span @click=""></span> -->
         </div>
         <div class="me-tubian">
@@ -30,20 +31,19 @@
       </div>
       <div
         v-else
-        class="me-dexiao"
-        style="width:90%;height:100px;border-radius: 5px;background: #fff;position: absolute;top: 60px;left: 5%;z-index:1;"
-      >
-        <div class="chenggong">
-          <span class="me-rentou"></span>
-          <span class="me-delv" style="font-size:1rem">{{uname}}</span>
-          <span class="me-duizhu">
+        class="chenggong"
+        style="width:90%;height:100px;border-radius: 5px;background: #fff;position: absolute;top: 60px;left: 5%;z-index:1;">
+        <!-- <div class="chenggong"> -->
+         <span><img style=" width: 85px;margin-left:5px;margin-top:5px; border-radius:50%" :src="'http://127.0.0.1:8081/'+imgn"></span>
+          <span style="font-size:1rem">{{uname}}</span>
+          <span>
             <img
               style="width:30px;margin-right:30px;margin-top:20px;"
               @click="dcName"
               :src="require('../../assets/tuichufffpx.png')"
             />
           </span>
-        </div>
+        <!-- </div> -->
       </div>
 
       <!-- 我的订单 -->
@@ -126,25 +126,29 @@ export default {
       list: [],
       pno: 0,
       delvtop: false,
-      uname:''
+      uname:'',
+      imgn:'',
     };
   },
   created() {
     //当前组件创建成功回调函数
     this.loadMore();
     this.loadm();
+  
   },
   methods: {
     // 
+  
     loadm(){
       var url="log";
       this.axios.get(url).then(res=>{
-        console.log(res.data.data[0].imgn)
+        // console.log(res.data.data[0].imgn)
        if(res.data.code==-1){
          this.$toast("请登录");
             this.delvtop=true
        }else{
         this.uname=res.data.data[0].uname
+        this.imgn=res.data.data[0].imgn
        }
       })
 

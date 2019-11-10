@@ -26,20 +26,28 @@ import Order from "./views/cart/Order.vue"
 import A from "./views/cart/A.vue"
 // 商品规格测试
 import B from "./views/cart/B.vue"
+// import C from "./views/cart/C.vue"
+// import D from "./views/cart/D.vue"
 //收货
 import Take from "./views/personal/Take.vue"
 import Take1 from "./views/personal/Take1.vue"
 // 新建地址
 import Takexin from "./views/personal/Takexin.vue"
+//注册
+// import Reg from './views/personal/Reg.vue'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
 
+    // {path:'/D',name:'',component:D},
+    // {path:'/C',name:'',component:C},
     {path:'/B',name:'',component:B},
     {path:'/A',name:'',component:A},
 
   
+    // {path:'/Reg',name:'',component:Reg},
     {path:'/Takexin',name:'',component:Takexin},
     {path:'/Take1',name:'',component:Take1},
     {path:'/Take',name:'',component:Take},
